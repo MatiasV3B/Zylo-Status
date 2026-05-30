@@ -23,6 +23,8 @@ jobs:
           node-version: 20
 
       - name: Run Status Prober
+        env:
+          ZYLO_API_KEY: ${{ secrets.ZYLO_API_KEY }}
         run: node probe.js
 
       - name: Commit and Push History Updates

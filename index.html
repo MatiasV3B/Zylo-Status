@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zylo AI — Estado de la Plataforma</title>
+    <title>Zylo AI — Platform Status</title>
     <link rel="icon" href="https://zyloai.net/logo.png" type="image/png">
     
     <!-- Google Fonts -->
@@ -16,7 +16,7 @@
     
     <style>
         /* ============================================================
-           ZILO AI — ESTADO DE LA PLATAFORMA (UPTIME KUMA DARK GLASS)
+           ZILO AI — PLATFORM STATUS (UPTIME KUMA DARK GLASS)
            ============================================================ */
         
         :root {
@@ -579,7 +579,7 @@
         }
     </style>
 </head>
-<body>
+    </div>
 
     <div class="container">
         
@@ -595,7 +595,7 @@
             <div class="header-meta">
                 <div class="refresh-pill">
                     <i class="ph-bold ph-arrows-clockwise" id="refresh-icon"></i>
-                    <span id="refresh-text">Sincronizado</span>
+                    <span id="refresh-text">Synchronized</span>
                 </div>
             </div>
         </header>
@@ -605,56 +605,56 @@
             <div class="status-banner-info">
                 <span class="pulse-circle up" id="banner-pulse"></span>
                 <div class="status-banner-text">
-                    <h2 id="banner-title">Cargando estado...</h2>
-                    <p id="banner-subtitle">Conectando con la base de datos Supabase en la nube.</p>
+                    <h2 id="banner-title">Loading status...</h2>
+                    <p id="banner-subtitle">Connecting to the cloud status database...</p>
                 </div>
             </div>
         </div>
 
-        <!-- METRICAS -->
+        <!-- METRICS -->
         <div class="metrics-grid">
             <div class="metric-card">
-                <div class="label">Operacionalidad Global</div>
+                <div class="label">Global Uptime</div>
                 <div class="value" id="metric-uptime">—</div>
             </div>
             <div class="metric-card">
-                <div class="label">Latencia Promedio</div>
+                <div class="label">Average Latency</div>
                 <div class="value" id="metric-ping">—</div>
             </div>
             <div class="metric-card">
-                <div class="label">Modelos Monitoreados</div>
+                <div class="label">Monitored Models</div>
                 <div class="value" id="metric-monitors">—</div>
             </div>
         </div>
 
-        <!-- FILTROS -->
+        <!-- FILTERS -->
         <div class="filter-section">
             <div class="search-box">
                 <i class="ph-bold ph-magnifying-glass"></i>
-                <input type="text" id="search-input" placeholder="Buscar modelos..." oninput="filterMonitors()">
+                <input type="text" id="search-input" placeholder="Search models..." oninput="filterMonitors()">
             </div>
         </div>
 
-        <!-- LISTA DE MONITORES -->
+        <!-- MONITOR LIST -->
         <div class="monitors-card">
             <div class="monitors-header">
-                <h3>Servicios & Modelos Activos</h3>
-                <span class="monitors-count" id="monitors-count">0 en total</span>
+                <h3>Services & Active Models</h3>
+                <span class="monitors-count" id="monitors-count">0 total</span>
             </div>
             
             <div id="monitors-list">
                 <div class="empty-state">
                     <i class="ph-bold ph-spinner-gap spin"></i>
-                    <h4>Cargando catálogo de modelos</h4>
-                    <p>Obteniendo el historial de chequeos desde el repositorio en la nube...</p>
+                    <h4>Loading model catalog</h4>
+                    <p>Fetching check history from the cloud repository...</p>
                 </div>
             </div>
         </div>
 
         <!-- FOOTER -->
         <footer>
-            <p>Monitoreo dinámico impulsado por GitHub Actions & Cloudflare CDN.</p>
-            <p style="margin-top: 8px;">¿Necesitas ayuda? Únete a nuestro canal de <a href="https://discord.gg/pTncNTjxUk" target="_blank" rel="noopener noreferrer">Discord</a>.</p>
+            <p>Dynamic monitoring powered by GitHub Actions & Cloudflare CDN.</p>
+            <p style="margin-top: 8px;">Need help? Join our <a href="https://discord.gg/pTncNTjxUk" target="_blank" rel="noopener noreferrer">Discord</a> server.</p>
         </footer>
 
     </div>
@@ -667,7 +667,7 @@
             const refreshText = document.getElementById('refresh-text');
             
             refreshIcon.classList.add('spin');
-            refreshText.innerText = "Actualizando...";
+            refreshText.innerText = "Updating...";
 
             try {
                 // Fetch the status history file directly from the GitHub repository
@@ -680,16 +680,16 @@
                 
                 setTimeout(() => {
                     refreshIcon.classList.remove('spin');
-                    refreshText.innerText = "Sincronizado";
+                    refreshText.innerText = "Synchronized";
                 }, 1000);
             } catch (e) {
                 console.error('Error loading history data:', e);
                 
                 // Fallback / Initial blank setup if file not found
-                renderEmptyState("Sin historial cargado", "Ejecuta el prober por primera vez en tu repositorio GitHub para generar 'history.json'.");
+                renderEmptyState("No history loaded", "Run the prober for the first time in your GitHub repository to generate 'history.json'.");
                 
                 refreshIcon.classList.remove('spin');
-                refreshText.innerText = "Error de carga";
+                refreshText.innerText = "Loading error";
             }
         }
 
@@ -710,11 +710,11 @@
             
             const monitors = Object.values(data);
             if (monitors.length === 0) {
-                renderEmptyState("Sin monitores", "No hay modelos registrados en el historial.");
+                renderEmptyState("No monitors", "No models registered in the history.");
                 return;
             }
 
-            monitorsCount.innerText = `${monitors.length} en total`;
+            monitorsCount.innerText = `${monitors.length} total`;
 
             // Sort monitors: global health first, then alphabetically
             monitors.sort((a, b) => {
@@ -768,7 +768,7 @@
                             <span class="status-dot ${lastCheck.up ? 'up' : 'down'}"></span>
                             <div class="monitor-details">
                                 <span class="monitor-name">${m.name}</span>
-                                <span class="monitor-uptime">${m.uptime.toFixed(2)}% de disponibilidad</span>
+                                <span class="monitor-uptime">${m.uptime.toFixed(2)}% uptime</span>
                             </div>
                         </div>
                         <div class="timeline-container">
@@ -776,8 +776,8 @@
                                 ${timelineHtml}
                             </div>
                             <div class="timeline-meta">
-                                <span>30 comprobaciones atrás</span>
-                                <span style="font-weight: 700;">100% estable</span>
+                                <span>30 checks ago</span>
+                                <span style="font-weight: 700;">100% stable</span>
                             </div>
                         </div>
                         <div class="monitor-ping ${pingClass}">
@@ -803,12 +803,12 @@
 
             if (anyDown) {
                 bannerPulse.className = "pulse-circle down";
-                bannerTitle.innerText = "Interrupción parcial del servicio";
-                bannerSubtitle.innerText = "Algunos modelos están respondiendo con latencias elevadas o fallas temporales.";
+                bannerTitle.innerText = "Partial Service Outage";
+                bannerSubtitle.innerText = "Some models are experiencing latency issues or temporary outages.";
             } else {
                 bannerPulse.className = "pulse-circle up";
-                bannerTitle.innerText = "Todos los sistemas operacionales";
-                bannerSubtitle.innerText = "El catálogo global de modelos de Zylo AI funciona al 100% de rendimiento.";
+                bannerTitle.innerText = "All Systems Operational";
+                bannerSubtitle.innerText = "The global Zylo AI model catalog is operating at 100% performance.";
             }
         }
 
