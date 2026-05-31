@@ -579,7 +579,7 @@
         }
     </style>
 </head>
-    </div>
+<body>
 
     <div class="container">
         
@@ -762,6 +762,12 @@
                 const formattedPing = lastCheck.up && lastCheck.ping ? `${Math.round(lastCheck.ping)}ms` : '—';
                 const pingClass = lastCheck.up && lastCheck.ping && lastCheck.ping < 300 ? 'ok' : '';
 
+                // Honest stability label: reflect the REAL last-check status and uptime,
+                // never a hardcoded "100% stable".
+                const isDown = !lastCheck.up;
+                const stabilityLabel = isDown ? 'Issues detected' : `${m.uptime.toFixed(2)}% stable`;
+                const stabilityColor = isDown ? 'var(--danger)' : 'var(--text-low)';
+
                 html += `
                     <div class="monitor-row" data-name="${m.name.toLowerCase()}">
                         <div class="monitor-info">
@@ -777,7 +783,7 @@
                             </div>
                             <div class="timeline-meta">
                                 <span>30 checks ago</span>
-                                <span style="font-weight: 700;">100% stable</span>
+                                <span style="font-weight: 700; color: ${stabilityColor};">${stabilityLabel}</span>
                             </div>
                         </div>
                         <div class="monitor-ping ${pingClass}">

@@ -28,11 +28,28 @@ async function main() {
     }
   }
 
+  // A probe failure (non-2xx response, timeout, unreachable host) is a "down"
+  // DATA POINT we want to record and publish — it must NEVER abort the workflow
+  // before the history is written/committed/deployed. Otherwise an outage would
+  // ironically prevent the status page from ever SHOWING the outage. Only a real
+  // I/O failure (can't write the file) is allowed to fail the job.
+  try {
+    await runProbes(history);
+  } catch (e) {
+    console.error(`[${ts()}] Unexpected error during probing (history will still be saved):`, e);
+  } finally {
+    writeFileSync(HISTORY_FILE, JSON.stringify(history, null, 2) + '\n');
+    console.log(`[${ts()}] Probing completed. History saved to ${HISTORY_FILE}`);
+  }
+}
+
+async function runProbes(history) {
   // 1. Probe global API health
   console.log('Probing global API health...');
   const apiStart = Date.now();
   let apiUp = false;
   let apiPing = 0;
+  let apiMsg = 'API /v1/models health check';
   let models = { text: [], image: [] };
 
   try {
@@ -41,95 +58,107 @@ async function main() {
       signal: AbortSignal.timeout(10000)
     });
     apiPing = Date.now() - apiStart;
+    // Anything other than a 2xx response means the API is NOT working.
     if (res.ok) {
       apiUp = true;
+      apiMsg = `Operational (HTTP ${res.status})`;
       const data = await res.json();
       if (data && Array.isArray(data.text)) models.text = data.text;
       if (data && Array.isArray(data.image)) models.image = data.image;
       console.log(`API is Up. Found ${models.text.length} text models.`);
     } else {
-      console.warn(`API returned HTTP status ${res.status}`);
+      apiMsg = `API Down — HTTP ${res.status}`;
+      console.warn(`API returned HTTP status ${res.status} — marking as DOWN`);
     }
   } catch (e) {
     apiPing = Date.now() - apiStart;
+    apiMsg = e.name === 'TimeoutError' ? 'API Down — Timeout (10s)' : `API Down — ${e.message}`;
     console.error('API probe failed:', e.message);
   }
 
   // Update history for global API monitor
-  updateMonitorHistory(history, 'zylo-api-health', 'Zylo API Health', apiUp, apiPing, 'API /v1/models health check');
+  updateMonitorHistory(history, 'zylo-api-health', 'Zylo API Health', apiUp, apiPing, apiMsg);
 
   // 2. Update status for all models
-  // If the API is up, we mark models as up (paid models are mapped dynamically, free ones are verified)
+  // If the API is up, paid models are assumed active (to avoid spending credits)
+  // and free text models are verified with a real request.
   const allModels = [...models.text, ...models.image];
   const apiKey = process.env.ZYLO_API_KEY;
-  
+
   if (!apiKey) {
-    console.warn(`[${ts()}] WARNING: ZYLO_API_KEY is not defined. Free models will be assumed active without live requests.`);
+    console.warn(`[${ts()}] WARNING: ZYLO_API_KEY is not defined. Free models cannot be live-checked and are assumed active.`);
   }
 
   if (allModels.length > 0) {
     for (const m of allModels) {
-      const monitorId = `model-${m.id.replace(/[^a-z0-9_-]/gi, '-').toLowerCase()}`;
-      const isPaid = !isFreeModel(m);
-      const isText = models.text.some(tm => tm.id === m.id);
-      
-      let modelUp = apiUp;
-      let modelPing = apiPing;
-      let modelMsg = 'Operational';
-      
-      if (apiUp) {
-        if (isPaid) {
-          // Paid models assumed active to prevent spending credits
-          modelUp = true;
-          modelPing = 0;
-          modelMsg = 'Paid model (real check skipped, assumed active)';
-        } else if (isText) {
-          // Free text models
-          if (apiKey) {
-            console.log(`Probing free model: ${m.id}...`);
-            const probeResult = await probeTextModel(m.id, apiKey);
-            modelUp = probeResult.up;
-            modelPing = probeResult.ms;
-            modelMsg = probeResult.msg;
-            if (modelUp) {
-              console.log(`  ✔ [FREE] ${m.id} — ${modelMsg}`);
+      // A single malformed model entry must not abort the whole run.
+      try {
+        if (!m || !m.id) {
+          console.warn('Skipping model with missing id:', JSON.stringify(m));
+          continue;
+        }
+
+        const monitorId = `model-${m.id.replace(/[^a-z0-9_-]/gi, '-').toLowerCase()}`;
+        const isPaid = !isFreeModel(m);
+        const isText = models.text.some(tm => tm.id === m.id);
+
+        let modelUp = apiUp;
+        let modelPing = apiPing;
+        let modelMsg = 'Operational';
+
+        if (apiUp) {
+          if (isPaid) {
+            // Paid models assumed active to prevent spending credits
+            modelUp = true;
+            modelPing = 0;
+            modelMsg = 'Paid model (real check skipped, assumed active)';
+          } else if (isText) {
+            // Free text models — verified with a real request
+            if (apiKey) {
+              console.log(`Probing free model: ${m.id}...`);
+              const probeResult = await probeTextModel(m.id, apiKey);
+              modelUp = probeResult.up;
+              modelPing = probeResult.ms;
+              modelMsg = probeResult.msg;
+              if (modelUp) {
+                console.log(`  ✔ [FREE] ${m.id} — ${modelMsg}`);
+              } else {
+                console.error(`  ✖ [FREE] ${m.id} — ${modelMsg}`);
+              }
+              // Small delay between checks to avoid hammering the API
+              await new Promise(r => setTimeout(r, 200));
             } else {
-              console.error(`  ✖ [FREE] ${m.id} — ${modelMsg}`);
+              modelUp = true;
+              modelPing = apiPing;
+              modelMsg = 'Free model (assumed active, ZYLO_API_KEY missing)';
             }
-            // Add a small 200ms delay between consecutive model checks to prevent aggressive hammering
-            await new Promise(resolve => setTimeout(resolve, 200));
           } else {
+            // Free image models (assumed active — no image-specific checker yet)
             modelUp = true;
             modelPing = apiPing;
-            modelMsg = 'Free model (assumed active, ZYLO_API_KEY missing)';
+            modelMsg = 'Free Image model (assumed active)';
           }
         } else {
-          // Free image models (assumed active as prober does not have image-specific checker)
-          modelUp = true;
-          modelPing = apiPing;
-          modelMsg = 'Free Image model (assumed active)';
+          // API is down → every model is down
+          modelUp = false;
+          modelPing = 0;
+          modelMsg = apiMsg;
         }
-      } else {
-        modelUp = false;
-        modelPing = 0;
-        modelMsg = 'API Down';
+
+        updateMonitorHistory(history, monitorId, m.name || m.id, modelUp, modelPing, modelMsg);
+      } catch (modelErr) {
+        console.error(`Error processing model ${m && m.id}:`, modelErr.message);
       }
-      
-      updateMonitorHistory(history, monitorId, m.name || m.id, modelUp, modelPing, modelMsg);
     }
   } else {
-    // If we couldn't load models, mark existing models in history as down
-    console.warn('No models found, marking existing models as DOWN (since API is down)...');
+    // Couldn't load the catalog — mark every known model as down.
+    console.warn('No models found, marking existing models as DOWN (API is unreachable)...');
     for (const id in history) {
       if (id !== 'zylo-api-health') {
-        updateMonitorHistory(history, id, history[id].name, false, 0, 'Catalog unreachable');
+        updateMonitorHistory(history, id, history[id].name, false, 0, apiMsg);
       }
     }
   }
-
-  // Write history back to file
-  writeFileSync(HISTORY_FILE, JSON.stringify(history, null, 2) + '\n');
-  console.log(`[${ts()}] Probing completed. History saved to ${HISTORY_FILE}`);
 }
 
 function isFreeModel(m) {
@@ -164,13 +193,10 @@ async function probeTextModel(modelId, apiKey) {
       signal: AbortSignal.timeout(30000)
     });
     const elapsed = Date.now() - t0;
+    // Any non-2xx response means the model is NOT working — report it as DOWN.
     if (!res.ok) {
       const body = await res.text().catch(() => '');
-      if (res.status === 401 || res.status === 402) {
-        console.warn(`[WARN] ${modelId}: HTTP ${res.status} — prober account issue, not model fault. ${body.slice(0, 150)}`);
-        return { up: true, ms: elapsed, msg: `Auth/Billing issue (${res.status}), model assumed up` };
-      }
-      return { up: false, ms: elapsed, msg: `HTTP ${res.status}: ${body.slice(0, 150)}` };
+      return { up: false, ms: elapsed, msg: `HTTP ${res.status}: ${body.slice(0, 150)}`.trim() };
     }
     const data = await res.json();
     const hasChoice = data.choices && data.choices.length > 0;
