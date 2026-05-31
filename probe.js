@@ -159,6 +159,26 @@ async function runProbes(history) {
       }
     }
   }
+
+  // Prune monitors for models that no longer exist in the live catalog, so that
+  // deleting a model in the admin actually removes it from the status page
+  // (instead of its old monitor lingering forever). Only prune when we trust the
+  // catalog (API up AND it returned models) — never on an outage, or we'd wipe
+  // every model the moment the API blips.
+  if (apiUp && allModels.length > 0) {
+    const liveIds = new Set(['zylo-api-health']);
+    for (const m of allModels) {
+      if (m && m.id) liveIds.add(`model-${m.id.replace(/[^a-z0-9_-]/gi, '-').toLowerCase()}`);
+    }
+    let pruned = 0;
+    for (const id of Object.keys(history)) {
+      if (id.indexOf('model-') === 0 && !liveIds.has(id)) {
+        delete history[id];
+        pruned++;
+      }
+    }
+    if (pruned) console.log(`Pruned ${pruned} stale model monitor(s) no longer in the catalog.`);
+  }
 }
 
 function isFreeModel(m) {

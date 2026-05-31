@@ -222,6 +222,46 @@
             margin-top: 4px;
         }
 
+        /* ANUNCIOS / INCIDENTES */
+        .announcements {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+        .announcements:empty { display: none; }
+        .announcement {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-left-width: 4px;
+            border-radius: 14px;
+            padding: 18px 22px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .announcement.info     { border-left-color: var(--primary); }
+        .announcement.warning  { border-left-color: var(--warning); }
+        .announcement.critical { border-left-color: var(--danger); }
+        .announcement-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+        .announcement-head i { font-size: 18px; }
+        .announcement.info .announcement-head i     { color: var(--primary); }
+        .announcement.warning .announcement-head i  { color: var(--warning); }
+        .announcement.critical .announcement-head i { color: var(--danger); }
+        .announcement-badge {
+            font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+            padding: 3px 10px; border-radius: 99px;
+        }
+        .announcement.info .announcement-badge     { background: var(--primary-glow); color: #c4b5fd; }
+        .announcement.warning .announcement-badge  { background: var(--warning-glow); color: #fcd34d; }
+        .announcement.critical .announcement-badge { background: var(--danger-glow); color: #fca5a5; }
+        .announcement-title { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 700; color: var(--text-high); }
+        .announcement-time { margin-left: auto; font-size: 12px; color: var(--text-low); }
+        .announcement-body { font-size: 14px; color: var(--text-medium); line-height: 1.6; white-space: pre-wrap; }
+        .announcement-model {
+            display: inline-block; margin-top: 10px; font-family: 'Fira Code', monospace; font-size: 12px;
+            color: var(--text-low); background: rgba(255, 255, 255, 0.05); padding: 2px 8px; border-radius: 6px;
+        }
+
         /* METRICAS DE RESUMEN */
         .metrics-grid {
             display: grid;
@@ -611,6 +651,9 @@
             </div>
         </div>
 
+        <!-- ANNOUNCEMENTS / INCIDENTS (published from the admin console) -->
+        <div class="announcements" id="announcements"></div>
+
         <!-- METRICS -->
         <div class="metrics-grid">
             <div class="metric-card">
@@ -832,11 +875,53 @@
             });
         }
 
+        // Announcements / incidents — published from the admin console as
+        // data/announcements.json (committed via the GitHub API). Only entries
+        // with active:true are shown; newest first.
+        function escAnn(s) {
+            return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+            });
+        }
+
+        async function loadAnnouncements() {
+            const host = document.getElementById('announcements');
+            if (!host) return;
+            try {
+                const res = await fetch('./data/announcements.json?t=' + Date.now());
+                if (!res.ok) { host.innerHTML = ''; return; }
+                const data = await res.json();
+                const list = (data && Array.isArray(data.announcements)) ? data.announcements : [];
+                const active = list.filter(function (a) { return a && a.active; });
+                if (!active.length) { host.innerHTML = ''; return; }
+                active.sort(function (a, b) { return new Date(b.created_at || 0) - new Date(a.created_at || 0); });
+                host.innerHTML = active.map(function (a) {
+                    const sev = (a.severity === 'critical' || a.severity === 'warning') ? a.severity : 'info';
+                    const label = sev === 'critical' ? 'Incidente' : (sev === 'warning' ? 'Aviso' : 'Info');
+                    const icon = sev === 'critical' ? 'ph-warning-octagon' : (sev === 'warning' ? 'ph-warning' : 'ph-megaphone');
+                    const when = a.created_at ? new Date(a.created_at).toLocaleString() : '';
+                    return '<div class="announcement ' + sev + '">' +
+                        '<div class="announcement-head">' +
+                            '<i class="ph-bold ' + icon + '"></i>' +
+                            '<span class="announcement-badge">' + label + '</span>' +
+                            '<span class="announcement-title">' + escAnn(a.title) + '</span>' +
+                            '<span class="announcement-time">' + escAnn(when) + '</span>' +
+                        '</div>' +
+                        '<div class="announcement-body">' + escAnn(a.body) + '</div>' +
+                        (a.model ? '<span class="announcement-model">' + escAnn(a.model) + '</span>' : '') +
+                    '</div>';
+                }).join('');
+            } catch (e) {
+                host.innerHTML = '';
+            }
+        }
+
         // Initial Load
         loadHistory();
+        loadAnnouncements();
 
         // Auto Refresh every 60 seconds
-        setInterval(loadHistory, 60000);
+        setInterval(function () { loadHistory(); loadAnnouncements(); }, 60000);
     </script>
 </body>
 </html>

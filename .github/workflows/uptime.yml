@@ -27,6 +27,12 @@ concurrency:
   group: zylo-uptime
   cancel-in-progress: false
 
+# Node 20 is deprecated on GitHub runners (forced to Node 24 from 2026-06-16,
+# removed 2026-09-16). This opts the bundled JS actions (checkout / setup-node /
+# actions-gh-pages) onto Node 24 now, silencing the deprecation warning.
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   probe:
     runs-on: ubuntu-latest
