@@ -1,0 +1,62 @@
+# Zylo uptime prober.
+#
+# This is a FRESH workflow file (renamed from the old status-page.yml) on a new
+# path so GitHub registers it as a brand-new workflow. A workflow that GitHub
+# auto-disabled after 60 days of inactivity stays disabled even after edits, but
+# a new file path is enabled by default and shows the "Run workflow" button.
+#
+# Needs repo setting: Settings > Actions > General > "Allow all actions...".
+# Optional secret: ZYLO_API_KEY (without it, free models are assumed active).
+
+name: Zylo Uptime Monitor
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'    # every 15 minutes
+  workflow_dispatch:           # manual run button in the Actions tab
+  push:
+    branches: [ main ]         # also runs on every push (bot commits use [skip ci])
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+# Avoid overlapping runs stepping on each other's history commit.
+concurrency:
+  group: zylo-uptime
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run status prober
+        env:
+          ZYLO_API_KEY: ${{ secrets.ZYLO_API_KEY }}
+        run: node probe.js
+
+      # Publish history even if probing hit issues, so outages still get recorded.
+      - name: Commit history updates
+        if: always()
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/history.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: update status history [skip ci]" && git push)
+
+      - name: Deploy to GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
+          force_orphan: true
