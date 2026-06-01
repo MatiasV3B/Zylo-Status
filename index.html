@@ -204,6 +204,11 @@
             animation: pulse-ring 2s cubic-bezier(0.215, 0.610, 0.355, 1) infinite;
         }
 
+        .pulse-circle.unknown {
+            background: var(--warning);
+            box-shadow: 0 0 15px var(--warning-glow);
+        }
+
         @keyframes pulse-ring {
             0% { transform: scale(0.7); opacity: 0.8; }
             100% { transform: scale(1.4); opacity: 0; }
@@ -420,6 +425,11 @@
             box-shadow: 0 0 10px var(--danger-glow);
         }
 
+        .status-dot.unknown {
+            background: var(--warning);
+            box-shadow: 0 0 10px var(--warning-glow);
+        }
+
         .monitor-details {
             display: flex;
             flex-direction: column;
@@ -487,6 +497,16 @@
         .timeline-block.down:hover {
             background: #f87171;
             box-shadow: 0 0 8px rgba(248, 113, 113, 0.6);
+        }
+
+        .timeline-block.unknown {
+            background: var(--warning);
+            opacity: 0.7;
+        }
+
+        .timeline-block.unknown:hover {
+            background: #fbbf24;
+            box-shadow: 0 0 8px rgba(245, 158, 11, 0.6);
         }
 
         .timeline-block.empty {
@@ -768,18 +788,24 @@
 
             // Calculate overall stats
             let totalUptime = 0;
+            let uptimeCount = 0;
             let totalPing = 0;
             let pingCount = 0;
             let anyDown = false;
 
+            // A check whose `verified` flag is false (or whose monitor uptime is null)
+            // was NOT actually tested — render it amber and keep it out of the math.
+            const stateOf = (c) => (c && c.verified === false) ? 'unknown' : (c && c.up ? 'up' : 'down');
+
             let html = '';
             monitors.forEach(m => {
-                const lastCheck = m.checks[m.checks.length - 1] || { up: false, ping: 0, msg: 'No checks yet' };
-                if (!lastCheck.up) anyDown = true;
+                const lastCheck = m.checks[m.checks.length - 1] || { up: false, ping: 0, msg: 'No checks yet', verified: true };
+                const lastState = stateOf(lastCheck);
+                if (lastState === 'down') anyDown = true;
 
-                totalUptime += m.uptime;
-                
-                const validPings = m.checks.filter(c => c.up && c.ping > 0);
+                if (typeof m.uptime === 'number') { totalUptime += m.uptime; uptimeCount++; }
+
+                const validPings = m.checks.filter(c => stateOf(c) === 'up' && c.ping > 0);
                 if (validPings.length > 0) {
                     const avgPing = validPings.reduce((sum, c) => sum + c.ping, 0) / validPings.length;
                     totalPing += avgPing;
@@ -790,34 +816,38 @@
                 // Fill up with empty blocks if checks.length < 30
                 const emptyBlocksCount = Math.max(0, 30 - m.checks.length);
                 let timelineHtml = '';
-                
+
                 for (let i = 0; i < emptyBlocksCount; i++) {
                     timelineHtml += `<span class="timeline-block empty"></span>`;
                 }
 
-                m.checks.forEach((c, idx) => {
-                    const statusClass = c.up ? 'up' : 'down';
+                m.checks.forEach((c) => {
+                    const st = stateOf(c);
+                    const label = st === 'up' ? 'OPERATIONAL' : (st === 'down' ? 'DOWN' : 'UNVERIFIED');
                     const dateStr = new Date(c.timestamp).toLocaleString();
-                    const tooltipText = `${dateStr} · Status: ${c.up ? 'OPERATIONAL' : 'DOWN'} · Ping: ${c.ping ? c.ping + 'ms' : 'N/A'} · ${c.msg || ''}`;
-                    timelineHtml += `<span class="timeline-block ${statusClass}" data-tooltip="${tooltipText}"></span>`;
+                    const tooltipText = `${dateStr} · Status: ${label} · Ping: ${c.ping ? c.ping + 'ms' : 'N/A'} · ${c.msg || ''}`;
+                    timelineHtml += `<span class="timeline-block ${st}" data-tooltip="${tooltipText}"></span>`;
                 });
 
-                const formattedPing = lastCheck.up && lastCheck.ping ? `${Math.round(lastCheck.ping)}ms` : '—';
-                const pingClass = lastCheck.up && lastCheck.ping && lastCheck.ping < 300 ? 'ok' : '';
+                const formattedPing = lastState === 'up' && lastCheck.ping ? `${Math.round(lastCheck.ping)}ms` : '—';
+                const pingClass = lastState === 'up' && lastCheck.ping && lastCheck.ping < 300 ? 'ok' : '';
 
                 // Honest stability label: reflect the REAL last-check status and uptime,
-                // never a hardcoded "100% stable".
-                const isDown = !lastCheck.up;
-                const stabilityLabel = isDown ? 'Issues detected' : `${m.uptime.toFixed(2)}% stable`;
-                const stabilityColor = isDown ? 'var(--danger)' : 'var(--text-low)';
+                // never a hardcoded "100% stable". Unverified models say so explicitly.
+                const hasUptime = typeof m.uptime === 'number';
+                let stabilityLabel, stabilityColor;
+                if (lastState === 'down') { stabilityLabel = 'Issues detected'; stabilityColor = 'var(--danger)'; }
+                else if (lastState === 'unknown' || !hasUptime) { stabilityLabel = 'Unverified'; stabilityColor = 'var(--warning)'; }
+                else { stabilityLabel = `${m.uptime.toFixed(2)}% stable`; stabilityColor = 'var(--text-low)'; }
+                const uptimeText = hasUptime ? `${m.uptime.toFixed(2)}% uptime` : 'Not verified';
 
                 html += `
                     <div class="monitor-row" data-name="${m.name.toLowerCase()}">
                         <div class="monitor-info">
-                            <span class="status-dot ${lastCheck.up ? 'up' : 'down'}"></span>
+                            <span class="status-dot ${lastState}"></span>
                             <div class="monitor-details">
                                 <span class="monitor-name">${m.name}</span>
-                                <span class="monitor-uptime">${m.uptime.toFixed(2)}% uptime</span>
+                                <span class="monitor-uptime">${uptimeText}</span>
                             </div>
                         </div>
                         <div class="timeline-container">
@@ -838,11 +868,13 @@
 
             list.innerHTML = html;
 
-            // Render overall banner and metrics
-            const overallUptime = totalUptime / monitors.length;
+            // Render overall banner and metrics. Global uptime averages only the
+            // monitors we actually verified, so an all-unverified page shows "—",
+            // not a fabricated 100%.
+            const overallUptime = uptimeCount > 0 ? totalUptime / uptimeCount : null;
             const avgPingValue = pingCount > 0 ? Math.round(totalPing / pingCount) : 0;
 
-            document.getElementById('metric-uptime').innerText = `${overallUptime.toFixed(2)}%`;
+            document.getElementById('metric-uptime').innerText = overallUptime != null ? `${overallUptime.toFixed(2)}%` : '—';
             document.getElementById('metric-ping').innerText = avgPingValue > 0 ? `${avgPingValue}ms` : '—';
             document.getElementById('metric-monitors').innerText = monitors.length;
 
@@ -850,14 +882,25 @@
             const bannerTitle = document.getElementById('banner-title');
             const bannerSubtitle = document.getElementById('banner-subtitle');
 
+            // How many models did we actually verify this cycle?
+            const verifiedMonitors = monitors.filter(m => {
+                const lc = m.checks[m.checks.length - 1];
+                return lc && lc.verified !== false;
+            }).length;
+
             if (anyDown) {
                 bannerPulse.className = "pulse-circle down";
                 bannerTitle.innerText = "Partial Service Outage";
-                bannerSubtitle.innerText = "Some models are experiencing latency issues or temporary outages.";
+                bannerSubtitle.innerText = "Some models are returning errors or are unreachable.";
+            } else if (verifiedMonitors <= 1) {
+                // Only the API-health check ran — no model was really tested.
+                bannerPulse.className = "pulse-circle unknown";
+                bannerTitle.innerText = "Awaiting Verification";
+                bannerSubtitle.innerText = "Live model checks are not running yet — set the ZYLO_API_KEY secret to enable them.";
             } else {
                 bannerPulse.className = "pulse-circle up";
                 bannerTitle.innerText = "All Systems Operational";
-                bannerSubtitle.innerText = "The global Zylo AI model catalog is operating at 100% performance.";
+                bannerSubtitle.innerText = `All ${verifiedMonitors} verified services responded successfully.`;
             }
         }
 
@@ -879,8 +922,8 @@
         // data/announcements.json (committed via the GitHub API). Only entries
         // with active:true are shown; newest first.
         function escAnn(s) {
-            return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
-                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+            return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
             });
         }
 

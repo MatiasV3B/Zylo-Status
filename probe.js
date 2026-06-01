@@ -6,19 +6,23 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const HISTORY_FILE = resolve(__dirname, 'data/history.json');
 const API_URL = 'https://api.zyloai.net';
 
-// Helper to get timestamp
+// Spacing between model probes. A free key is rate-limited to 10 req/min, so we
+// never fire faster than one every 600ms. With a limitless probe key this is just
+// gentle pacing so we don't hammer the upstream providers.
+const PROBE_SPACING_MS = 600;
+// One image model in the catalog. Image generation is real GPU inference (costs
+// money even with a limitless key), so it can be disabled with ZYLO_PROBE_IMAGES=0.
+const PROBE_IMAGES = process.env.ZYLO_PROBE_IMAGES !== '0';
+
 const ts = () => new Date().toISOString();
+const delay = (ms) => new Promise((r) => setTimeout(r, ms));
 
 async function main() {
   console.log(`[${ts()}] Starting GitHub Actions Uptime Prober...`);
 
-  // Ensure data directory exists
   const dataDir = resolve(__dirname, 'data');
-  if (!existsSync(dataDir)) {
-    mkdirSync(dataDir, { recursive: true });
-  }
+  if (!existsSync(dataDir)) mkdirSync(dataDir, { recursive: true });
 
-  // Load existing history
   let history = {};
   if (existsSync(HISTORY_FILE)) {
     try {
@@ -28,11 +32,11 @@ async function main() {
     }
   }
 
-  // A probe failure (non-2xx response, timeout, unreachable host) is a "down"
-  // DATA POINT we want to record and publish — it must NEVER abort the workflow
-  // before the history is written/committed/deployed. Otherwise an outage would
-  // ironically prevent the status page from ever SHOWING the outage. Only a real
-  // I/O failure (can't write the file) is allowed to fail the job.
+  // A probe failure (non-2xx, timeout, unreachable host) is a "down" DATA POINT we
+  // want to record and publish — it must NEVER abort the workflow before history is
+  // written/committed/deployed. Otherwise an outage would ironically prevent the
+  // status page from ever SHOWING the outage. Only a real I/O failure (can't write
+  // the file) is allowed to fail the job.
   try {
     await runProbes(history);
   } catch (e) {
@@ -44,7 +48,7 @@ async function main() {
 }
 
 async function runProbes(history) {
-  // 1. Probe global API health
+  // 1. Probe global API health (no key needed — just the public catalog endpoint).
   console.log('Probing global API health...');
   const apiStart = Date.now();
   let apiUp = false;
@@ -58,14 +62,13 @@ async function runProbes(history) {
       signal: AbortSignal.timeout(10000)
     });
     apiPing = Date.now() - apiStart;
-    // Anything other than a 2xx response means the API is NOT working.
     if (res.ok) {
       apiUp = true;
       apiMsg = `Operational (HTTP ${res.status})`;
       const data = await res.json();
       if (data && Array.isArray(data.text)) models.text = data.text;
       if (data && Array.isArray(data.image)) models.image = data.image;
-      console.log(`API is Up. Found ${models.text.length} text models.`);
+      console.log(`API is Up. Found ${models.text.length} text + ${models.image.length} image models.`);
     } else {
       apiMsg = `API Down — HTTP ${res.status}`;
       console.warn(`API returned HTTP status ${res.status} — marking as DOWN`);
@@ -76,95 +79,67 @@ async function runProbes(history) {
     console.error('API probe failed:', e.message);
   }
 
-  // Update history for global API monitor
-  updateMonitorHistory(history, 'zylo-api-health', 'Zylo API Health', apiUp, apiPing, apiMsg);
+  updateMonitorHistory(history, 'zylo-api-health', 'Zylo API Health', { up: apiUp, ping: apiPing, msg: apiMsg, verified: true });
 
-  // 2. Update status for all models
-  // If the API is up, paid models are assumed active (to avoid spending credits)
-  // and free text models are verified with a real request.
-  const allModels = [...models.text, ...models.image];
+  // 2. Probe EVERY model with a real request. The rule (matching the admin console):
+  //    2xx => UP, anything else => DOWN. No model is ever "assumed active" — that's
+  //    the whole point of a status page. Without a key we cannot verify, so models
+  //    are recorded as UNVERIFIED (neutral/amber), never faked green.
   const apiKey = process.env.ZYLO_API_KEY;
+  // A catalog id can carry stray whitespace/newlines (e.g. a bad paste when the
+  // model was added). That both breaks upstream routing AND mangles into a phantom
+  // monitor id, so normalize in place before the id is used for anything.
+  for (const m of [...models.text, ...models.image]) {
+    if (m && typeof m.id === 'string') m.id = m.id.trim();
+  }
+  const textIds = new Set(models.text.map((m) => m && m.id));
+  const allModels = [...models.text, ...models.image];
 
   if (!apiKey) {
-    console.warn(`[${ts()}] WARNING: ZYLO_API_KEY is not defined. Free models cannot be live-checked and are assumed active.`);
+    console.warn(`[${ts()}] WARNING: ZYLO_API_KEY secret is NOT set. Models cannot be live-checked and will show as UNVERIFIED. Set it (use a limitless key) to enable real 200/else checks.`);
   }
 
-  if (allModels.length > 0) {
+  if (apiUp && allModels.length > 0) {
+    let i = 0;
     for (const m of allModels) {
-      // A single malformed model entry must not abort the whole run.
       try {
-        if (!m || !m.id) {
-          console.warn('Skipping model with missing id:', JSON.stringify(m));
-          continue;
-        }
-
+        if (!m || !m.id) { console.warn('Skipping model with missing id:', JSON.stringify(m)); continue; }
         const monitorId = `model-${m.id.replace(/[^a-z0-9_-]/gi, '-').toLowerCase()}`;
-        const isPaid = !isFreeModel(m);
-        const isText = models.text.some(tm => tm.id === m.id);
+        const isText = textIds.has(m.id);
 
-        let modelUp = apiUp;
-        let modelPing = apiPing;
-        let modelMsg = 'Operational';
-
-        if (apiUp) {
-          if (isPaid) {
-            // Paid models assumed active to prevent spending credits
-            modelUp = true;
-            modelPing = 0;
-            modelMsg = 'Paid model (real check skipped, assumed active)';
-          } else if (isText) {
-            // Free text models — verified with a real request
-            if (apiKey) {
-              console.log(`Probing free model: ${m.id}...`);
-              const probeResult = await probeTextModel(m.id, apiKey);
-              modelUp = probeResult.up;
-              modelPing = probeResult.ms;
-              modelMsg = probeResult.msg;
-              if (modelUp) {
-                console.log(`  ✔ [FREE] ${m.id} — ${modelMsg}`);
-              } else {
-                console.error(`  ✖ [FREE] ${m.id} — ${modelMsg}`);
-              }
-              // Small delay between checks to avoid hammering the API
-              await new Promise(r => setTimeout(r, 200));
-            } else {
-              modelUp = true;
-              modelPing = apiPing;
-              modelMsg = 'Free model (assumed active, ZYLO_API_KEY missing)';
-            }
-          } else {
-            // Free image models (assumed active — no image-specific checker yet)
-            modelUp = true;
-            modelPing = apiPing;
-            modelMsg = 'Free Image model (assumed active)';
-          }
+        let result;
+        if (!apiKey) {
+          // Honest: we genuinely don't know. Neutral, not green, not red.
+          result = { up: true, ping: 0, verified: false, msg: 'Unverified — ZYLO_API_KEY secret not set' };
+        } else if (!isText && !PROBE_IMAGES) {
+          result = { up: true, ping: 0, verified: false, msg: 'Unverified — image checks disabled (ZYLO_PROBE_IMAGES=0)' };
         } else {
-          // API is down → every model is down
-          modelUp = false;
-          modelPing = 0;
-          modelMsg = apiMsg;
+          if (i > 0) await delay(PROBE_SPACING_MS);
+          i++;
+          console.log(`Probing ${isText ? 'text' : 'image'} model: ${m.id}...`);
+          result = isText ? await probeTextModel(m.id, apiKey) : await probeImageModel(m.id, apiKey);
+          const tag = result.verified === false ? '?' : (result.up ? '✔' : '✖');
+          console.log(`  ${tag} ${m.id} — ${result.msg}`);
         }
-
-        updateMonitorHistory(history, monitorId, m.name || m.id, modelUp, modelPing, modelMsg);
+        updateMonitorHistory(history, monitorId, m.name || m.id, result);
       } catch (modelErr) {
         console.error(`Error processing model ${m && m.id}:`, modelErr.message);
       }
     }
-  } else {
-    // Couldn't load the catalog — mark every known model as down.
-    console.warn('No models found, marking existing models as DOWN (API is unreachable)...');
+  } else if (!apiUp) {
+    // API is down → every known model is down.
+    console.warn('API is unreachable — marking every known model as DOWN...');
     for (const id in history) {
       if (id !== 'zylo-api-health') {
-        updateMonitorHistory(history, id, history[id].name, false, 0, apiMsg);
+        updateMonitorHistory(history, id, history[id].name, { up: false, ping: 0, msg: apiMsg, verified: true });
       }
     }
   }
 
-  // Prune monitors for models that no longer exist in the live catalog, so that
-  // deleting a model in the admin actually removes it from the status page
-  // (instead of its old monitor lingering forever). Only prune when we trust the
-  // catalog (API up AND it returned models) — never on an outage, or we'd wipe
-  // every model the moment the API blips.
+  // Prune monitors for models no longer in the live catalog, so deleting a model in
+  // the admin actually removes it from the status page. Only prune when we trust the
+  // catalog (API up AND it returned models) — never on an outage, or we'd wipe every
+  // model the moment the API blips.
   if (apiUp && allModels.length > 0) {
     const liveIds = new Set(['zylo-api-health']);
     for (const m of allModels) {
@@ -172,26 +147,22 @@ async function runProbes(history) {
     }
     let pruned = 0;
     for (const id of Object.keys(history)) {
-      if (id.indexOf('model-') === 0 && !liveIds.has(id)) {
-        delete history[id];
-        pruned++;
-      }
+      if (id.indexOf('model-') === 0 && !liveIds.has(id)) { delete history[id]; pruned++; }
     }
     if (pruned) console.log(`Pruned ${pruned} stale model monitor(s) no longer in the catalog.`);
   }
 }
 
-function isFreeModel(m) {
-  if (m.min_plan && m.min_plan.toLowerCase() === 'free') return true;
-  if (m.pricing) {
-    const prompt = parseFloat(m.pricing.prompt) || 0;
-    const completion = parseFloat(m.pricing.completion) || 0;
-    if (prompt === 0 && completion === 0) return true;
-  }
-  if (m.id && (m.id.toLowerCase().includes(':free') || m.id.toLowerCase().endsWith('-free') || m.id.toLowerCase().includes('/free'))) {
-    return true;
-  }
-  return false;
+// Turn an HTTP response into a check result. 2xx => up (verified). 429/403 mean we
+// couldn't actually verify (rate limited / probe key lacks access) — neutral, NOT a
+// model failure, so we don't flap the page red because OUR key got throttled. Real
+// failures (timeout, 4xx/5xx) => down (verified).
+function classify(status, ms, bodyText) {
+  if (status >= 200 && status < 300) return { up: true, ping: ms, verified: true, msg: `OK (HTTP ${status}, ${ms}ms)` };
+  if (status === 429) return { up: true, ping: ms, verified: false, msg: 'Unverified — rate limited (HTTP 429)' };
+  if (status === 403) return { up: true, ping: ms, verified: false, msg: 'Unverified — probe key has no access (HTTP 403)' };
+  if (status === 0) return { up: false, ping: ms, verified: true, msg: bodyText || 'Down — no connection / timeout' };
+  return { up: false, ping: ms, verified: true, msg: `Down — HTTP ${status}: ${String(bodyText || '').slice(0, 140)}`.trim() };
 }
 
 async function probeTextModel(modelId, apiKey) {
@@ -199,71 +170,72 @@ async function probeTextModel(modelId, apiKey) {
   try {
     const res = await fetch(`${API_URL}/v1/chat/completions`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`
-      },
-      body: JSON.stringify({
-        model: modelId,
-        messages: [{ role: 'user', content: 'Hi' }],
-        max_tokens: 5,
-        temperature: 0,
-        stream: false
-      }),
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${apiKey}` },
+      body: JSON.stringify({ model: modelId, messages: [{ role: 'user', content: 'Hi' }], max_tokens: 1, temperature: 0, stream: false }),
       signal: AbortSignal.timeout(30000)
     });
-    const elapsed = Date.now() - t0;
-    // Any non-2xx response means the model is NOT working — report it as DOWN.
-    if (!res.ok) {
-      const body = await res.text().catch(() => '');
-      return { up: false, ms: elapsed, msg: `HTTP ${res.status}: ${body.slice(0, 150)}`.trim() };
+    const ms = Date.now() - t0;
+    if (res.status >= 200 && res.status < 300) {
+      // 2xx but malformed body still counts as a failure to actually generate.
+      const data = await res.json().catch(() => null);
+      const hasChoice = data && Array.isArray(data.choices) && data.choices.length > 0;
+      return hasChoice ? classify(res.status, ms) : { up: false, ping: ms, verified: true, msg: `Down — HTTP ${res.status} but no choices in response` };
     }
-    const data = await res.json();
-    const hasChoice = data.choices && data.choices.length > 0;
-    return {
-      up: hasChoice,
-      ms: elapsed,
-      msg: hasChoice ? `OK (${elapsed}ms)` : `No choices in response`
-    };
+    const body = await res.text().catch(() => '');
+    return classify(res.status, ms, body);
   } catch (e) {
-    const elapsed = Date.now() - t0;
-    return {
-      up: false,
-      ms: elapsed,
-      msg: e.name === 'TimeoutError' ? `Timeout (30s)` : e.message
-    };
+    const ms = Date.now() - t0;
+    return classify(0, ms, e.name === 'TimeoutError' ? 'Down — timeout (30s)' : `Down — ${e.message}`);
   }
 }
 
-function updateMonitorHistory(history, id, name, up, ping, msg) {
-  if (!history[id]) {
-    history[id] = {
-      id,
-      name,
-      uptime: 100,
-      checks: []
-    };
+async function probeImageModel(modelId, apiKey) {
+  const t0 = Date.now();
+  try {
+    const res = await fetch(`${API_URL}/v1/images/generations`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${apiKey}` },
+      body: JSON.stringify({ model: modelId, prompt: 'a simple solid red circle centered on a white background' }),
+      signal: AbortSignal.timeout(90000)
+    });
+    const ms = Date.now() - t0;
+    if (res.status >= 200 && res.status < 300) return classify(res.status, ms);
+    const body = await res.text().catch(() => '');
+    return classify(res.status, ms, body);
+  } catch (e) {
+    const ms = Date.now() - t0;
+    return classify(0, ms, e.name === 'TimeoutError' ? 'Down — timeout (90s)' : `Down — ${e.message}`);
   }
+}
 
-  const newCheck = {
+// Append a check and recompute uptime. A check is { timestamp, up, ping, msg,
+// verified }. `verified === false` means "couldn't determine" — it is shown amber
+// and EXCLUDED from the uptime % (so we never report a fabricated 100%).
+function updateMonitorHistory(history, id, name, result) {
+  if (!history[id]) history[id] = { id, name, uptime: 100, checks: [] };
+  history[id].name = name;
+
+  history[id].checks.push({
     timestamp: new Date().toISOString(),
-    up,
-    ping,
-    msg
-  };
+    up: !!result.up,
+    ping: result.ping || 0,
+    msg: result.msg || '',
+    verified: result.verified !== false
+  });
+  if (history[id].checks.length > 30) history[id].checks.shift();
 
-  // Append new check and keep only last 30 entries
-  history[id].checks.push(newCheck);
-  if (history[id].checks.length > 30) {
-    history[id].checks.shift();
+  // Uptime over VERIFIED checks only. If nothing was verified yet, uptime is null
+  // (the page renders "—" instead of a fake percentage).
+  const verified = history[id].checks.filter((c) => c.verified !== false);
+  if (verified.length > 0) {
+    const upCount = verified.filter((c) => c.up).length;
+    history[id].uptime = Math.round((upCount / verified.length) * 10000) / 100;
+  } else {
+    history[id].uptime = null;
   }
-
-  // Re-calculate uptime percentage based on last 30 checks
-  const upCount = history[id].checks.filter(c => c.up).length;
-  history[id].uptime = Math.round((upCount / history[id].checks.length) * 10000) / 100;
 }
 
-main().catch(e => {
+main().catch((e) => {
   console.error('Fatal probe error:', e);
   process.exit(1);
 });
