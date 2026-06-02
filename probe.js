@@ -4,6 +4,11 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const HISTORY_FILE = resolve(__dirname, 'data/history.json');
+// Admin-set manual overrides. A model can be forced to 'maintenance' (amber, not
+// counted) or 'down' (red) regardless of the live check. Written by the admin panel
+// via the GitHub Contents API. There is deliberately NO 'force up' — green is only
+// ever earned by a real 2xx, never faked.
+const OVERRIDES_FILE = resolve(__dirname, 'data/overrides.json');
 const API_URL = 'https://api.zyloai.net';
 
 // Spacing between model probes. A free key is rate-limited to 10 req/min, so we
@@ -95,6 +100,19 @@ async function runProbes(history) {
   const textIds = new Set(models.text.map((m) => m && m.id));
   const allModels = [...models.text, ...models.image];
 
+  // Manual overrides keyed by (clean) model id. Missing file → no overrides.
+  let overrides = {};
+  if (existsSync(OVERRIDES_FILE)) {
+    try {
+      const parsed = JSON.parse(readFileSync(OVERRIDES_FILE, 'utf-8'));
+      if (parsed && parsed.overrides && typeof parsed.overrides === 'object') overrides = parsed.overrides;
+      const n = Object.keys(overrides).length;
+      if (n) console.log(`Loaded ${n} manual override(s) from overrides.json.`);
+    } catch (e) {
+      console.warn('Could not parse overrides.json, ignoring:', e.message);
+    }
+  }
+
   if (!apiKey) {
     console.warn(`[${ts()}] WARNING: ZYLO_API_KEY secret is NOT set. Models cannot be live-checked and will show as UNVERIFIED. Set it (use a limitless key) to enable real 200/else checks.`);
   }
@@ -107,8 +125,16 @@ async function runProbes(history) {
         const monitorId = `model-${m.id.replace(/[^a-z0-9_-]/gi, '-').toLowerCase()}`;
         const isText = textIds.has(m.id);
 
+        const ov = overrides[m.id];
         let result;
-        if (!apiKey) {
+        if (ov && (ov.state === 'maintenance' || ov.state === 'down')) {
+          // Admin override: skip the real probe entirely.
+          const note = (ov.note == null ? '' : String(ov.note)).slice(0, 160);
+          result = ov.state === 'maintenance'
+            ? { up: false, ping: 0, verified: false, maintenance: true, msg: 'Maintenance' + (note ? ' — ' + note : ' (set by admin)') }
+            : { up: false, ping: 0, verified: true, msg: 'Flagged down by admin' + (note ? ' — ' + note : '') };
+          console.log(`  ⚙ ${m.id} — override: ${ov.state}`);
+        } else if (!apiKey) {
           // Honest: we genuinely don't know. Neutral, not green, not red.
           result = { up: true, ping: 0, verified: false, msg: 'Unverified — ZYLO_API_KEY secret not set' };
         } else if (!isText && !PROBE_IMAGES) {
@@ -220,7 +246,8 @@ function updateMonitorHistory(history, id, name, result) {
     up: !!result.up,
     ping: result.ping || 0,
     msg: result.msg || '',
-    verified: result.verified !== false
+    verified: result.verified !== false,
+    maintenance: !!result.maintenance
   });
   if (history[id].checks.length > 30) history[id].checks.shift();
 

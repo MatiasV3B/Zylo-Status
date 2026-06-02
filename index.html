@@ -823,7 +823,7 @@
 
                 m.checks.forEach((c) => {
                     const st = stateOf(c);
-                    const label = st === 'up' ? 'OPERATIONAL' : (st === 'down' ? 'DOWN' : 'UNVERIFIED');
+                    const label = c.maintenance ? 'MAINTENANCE' : (st === 'up' ? 'OPERATIONAL' : (st === 'down' ? 'DOWN' : 'UNVERIFIED'));
                     const dateStr = new Date(c.timestamp).toLocaleString();
                     const tooltipText = `${dateStr} · Status: ${label} · Ping: ${c.ping ? c.ping + 'ms' : 'N/A'} · ${c.msg || ''}`;
                     timelineHtml += `<span class="timeline-block ${st}" data-tooltip="${tooltipText}"></span>`;
@@ -835,11 +835,13 @@
                 // Honest stability label: reflect the REAL last-check status and uptime,
                 // never a hardcoded "100% stable". Unverified models say so explicitly.
                 const hasUptime = typeof m.uptime === 'number';
+                const isMaint = !!(lastCheck && lastCheck.maintenance);
                 let stabilityLabel, stabilityColor;
                 if (lastState === 'down') { stabilityLabel = 'Issues detected'; stabilityColor = 'var(--danger)'; }
+                else if (isMaint) { stabilityLabel = 'Maintenance'; stabilityColor = 'var(--warning)'; }
                 else if (lastState === 'unknown' || !hasUptime) { stabilityLabel = 'Unverified'; stabilityColor = 'var(--warning)'; }
                 else { stabilityLabel = `${m.uptime.toFixed(2)}% stable`; stabilityColor = 'var(--text-low)'; }
-                const uptimeText = hasUptime ? `${m.uptime.toFixed(2)}% uptime` : 'Not verified';
+                const uptimeText = isMaint ? 'In maintenance' : (hasUptime ? `${m.uptime.toFixed(2)}% uptime` : 'Not verified');
 
                 html += `
                     <div class="monitor-row" data-name="${m.name.toLowerCase()}">
