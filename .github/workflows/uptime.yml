@@ -49,6 +49,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0          # full history so the rebase-before-push below works
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -80,14 +82,32 @@ jobs:
           PROBE_SCOPE: ${{ steps.scope.outputs.scope }}
         run: node probe.js
 
-      # Publish history even if probing hit issues, so outages still get recorded.
+      # Persist history to main so the 30-check window accumulates across runs.
+      # main can advance mid-run (announcements / overrides / manual publishes commit
+      # via the API, and runs overlap), so a plain `git push` would fail non-fast-
+      # forward and turn the run red ("exit code 1"). Rebase + retry instead. Skipped
+      # on push (the prober didn't run, so there's nothing new to commit).
       - name: Commit history updates
-        if: always()
+        if: ${{ always() && github.event_name != 'push' }}
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add data/history.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: update status history [skip ci]" && git push)
+          if git diff --cached --quiet; then
+            echo "No history changes to commit."
+            exit 0
+          fi
+          git commit -m "chore: update status history [skip ci]"
+          for i in 1 2 3 4 5; do
+            if git push origin HEAD:main; then
+              echo "Pushed history (attempt $i)."
+              exit 0
+            fi
+            echo "Push rejected (main advanced); rebasing and retrying ($i/5)..."
+            git pull --rebase --autostash origin main || true
+          done
+          echo "Could not push history after 5 attempts." >&2
+          exit 1
 
       - name: Deploy to GitHub Pages
         if: always()
