@@ -18,9 +18,20 @@ const PROBE_SPACING_MS = 600;
 // One image model in the catalog. Image generation is real GPU inference (costs
 // money even with a limitless key), so it can be disabled with ZYLO_PROBE_IMAGES=0.
 const PROBE_IMAGES = process.env.ZYLO_PROBE_IMAGES !== '0';
+// Probe scope by plan tier, set per-cron by the workflow: 'free' = the lowest tier
+// present in the catalog (BASIC today), 'pro' = the higher tiers (GO), 'all' = every
+// model (default / manual dispatch). Out-of-scope models keep their last result.
+const PROBE_SCOPE = (process.env.PROBE_SCOPE || 'all').toLowerCase();
 
 const ts = () => new Date().toISOString();
 const delay = (ms) => new Promise((r) => setTimeout(r, ms));
+
+// Plan hierarchy rank (free < BASIC < GO < PRO < MEGA < ENTERPRISE; limitless = all).
+// Returns undefined for unknown/non-hierarchical plans.
+function planRank(p) {
+  const R = { free: 0, basic: 1, go: 2, pro: 3, mega: 4, enterprise: 5, limitless: 99 };
+  return R[String(p == null ? '' : p).toLowerCase()];
+}
 
 async function main() {
   console.log(`[${ts()}] Starting GitHub Actions Uptime Prober...`);
@@ -117,6 +128,21 @@ async function runProbes(history) {
     console.warn(`[${ts()}] WARNING: ZYLO_API_KEY secret is NOT set. Models cannot be live-checked and will show as UNVERIFIED. Set it (use a limitless key) to enable real 200/else checks.`);
   }
 
+  // Scope by plan tier (the cron that fired decides). 'free' = lowest tier present,
+  // 'pro'/'paid' = the higher tiers. Out-of-scope models are skipped so each tier
+  // refreshes on its own cadence (free every 4h, pro weekly).
+  const ranks = allModels.map((m) => planRank(m && m.min_plan)).filter((r) => r != null);
+  const lowestRank = ranks.length ? Math.min(...ranks) : 0;
+  const inScope = (m) => {
+    if (PROBE_SCOPE === 'all') return true;
+    const r = planRank(m && m.min_plan);
+    const isLow = r != null && r === lowestRank;
+    return (PROBE_SCOPE === 'free' || PROBE_SCOPE === 'basic') ? isLow : !isLow;
+  };
+  if (PROBE_SCOPE !== 'all') {
+    console.log(`Probe scope = ${PROBE_SCOPE} (lowest tier rank=${lowestRank}; ${allModels.filter(inScope).length}/${allModels.length} models in scope).`);
+  }
+
   if (apiUp && allModels.length > 0) {
     let i = 0;
     for (const m of allModels) {
@@ -134,6 +160,9 @@ async function runProbes(history) {
             ? { up: false, ping: 0, verified: false, maintenance: true, msg: 'Maintenance' + (note ? ' — ' + note : ' (set by admin)') }
             : { up: false, ping: 0, verified: true, msg: 'Flagged down by admin' + (note ? ' — ' + note : '') };
           console.log(`  ⚙ ${m.id} — override: ${ov.state}`);
+        } else if (!inScope(m)) {
+          // Out of scope for this run (different tier's cadence) — leave it untouched.
+          continue;
         } else if (!apiKey) {
           // Honest: we genuinely don't know. Neutral, not green, not red.
           result = { up: true, ping: 0, verified: false, msg: 'Unverified — ZYLO_API_KEY secret not set' };
