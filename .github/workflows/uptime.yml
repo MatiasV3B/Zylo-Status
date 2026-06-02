@@ -12,18 +12,17 @@ name: Zylo Uptime Monitor
 
 on:
   schedule:
-    # Two cadences by plan tier (the catalog has BASIC + GO; "free"=lowest tier
-    # BASIC, "pro"=higher tier GO). The scope is derived from which cron fired,
-    # in the "Determine probe scope" step below.
-    - cron: '0 */4 * * *'    # FREE / lowest-tier (BASIC) models — every 4 hours
-    - cron: '0 0 * * 0'      # PRO / higher-tier (GO) models — weekly (~every 7 days), Sun 00:00 UTC
-  workflow_dispatch:          # manual run button; choose which models to probe
+    # Only the lowest tier ("free"/BASIC) is live-probed — those are the models that
+    # flap. Higher-tier ("paid"/GO) models are asserted stable by the prober and not
+    # probed (see PAID_ALWAYS_STABLE), so they don't need their own cadence.
+    - cron: '0 */4 * * *'    # probe FREE / BASIC models — every 4 hours
+  workflow_dispatch:          # manual run; optionally live-probe the paid models too
     inputs:
-      scope:
-        description: 'Which models to probe'
+      paid:
+        description: 'Paid (higher-tier) models'
         type: choice
-        options: [all, free, pro]
-        default: all
+        options: [stable, probe]
+        default: stable
   push:
     branches: [ main ]        # manual publish from the admin panel → DEPLOY ONLY (probe skipped)
 
@@ -57,29 +56,15 @@ jobs:
         with:
           node-version: 20
 
-      # Map the trigger → probe scope. Scheduled runs use the cron that fired;
-      # a manual dispatch uses its input; a push (admin publish) leaves it 'all'
-      # but the prober step is skipped on push anyway.
-      - name: Determine probe scope
-        id: scope
-        run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "scope=${{ github.event.inputs.scope }}" >> "$GITHUB_OUTPUT"
-          elif [ "${{ github.event.schedule }}" = "0 0 * * 0" ]; then
-            echo "scope=pro" >> "$GITHUB_OUTPUT"
-          elif [ "${{ github.event.schedule }}" = "0 */4 * * *" ]; then
-            echo "scope=free" >> "$GITHUB_OUTPUT"
-          else
-            echo "scope=all" >> "$GITHUB_OUTPUT"
-          fi
-
       # On a push (the admin's manual publish) DON'T re-probe — just deploy the
       # history.json that was committed, so the page shows the manual run verbatim.
       - name: Run status prober
         if: github.event_name != 'push'
         env:
           ZYLO_API_KEY: ${{ secrets.ZYLO_API_KEY }}
-          PROBE_SCOPE: ${{ steps.scope.outputs.scope }}
+          # Paid models are asserted stable by default; a manual dispatch with
+          # paid=probe live-checks them instead.
+          PAID_ALWAYS_STABLE: ${{ github.event.inputs.paid == 'probe' && '0' || '1' }}
         run: node probe.js
 
       # Persist history to main so the 30-check window accumulates across runs.

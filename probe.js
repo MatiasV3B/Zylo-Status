@@ -5,9 +5,8 @@ import { fileURLToPath } from 'node:url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const HISTORY_FILE = resolve(__dirname, 'data/history.json');
 // Admin-set manual overrides. A model can be forced to 'maintenance' (amber, not
-// counted) or 'down' (red) regardless of the live check. Written by the admin panel
-// via the GitHub Contents API. There is deliberately NO 'force up' — green is only
-// ever earned by a real 2xx, never faked.
+// counted), 'down' (red), or 'stable' (green) regardless of the live check. Written
+// by the admin panel via the GitHub Contents API.
 const OVERRIDES_FILE = resolve(__dirname, 'data/overrides.json');
 const API_URL = 'https://api.zyloai.net';
 
@@ -18,10 +17,11 @@ const PROBE_SPACING_MS = 600;
 // One image model in the catalog. Image generation is real GPU inference (costs
 // money even with a limitless key), so it can be disabled with ZYLO_PROBE_IMAGES=0.
 const PROBE_IMAGES = process.env.ZYLO_PROBE_IMAGES !== '0';
-// Probe scope by plan tier, set per-cron by the workflow: 'free' = the lowest tier
-// present in the catalog (BASIC today), 'pro' = the higher tiers (GO), 'all' = every
-// model (default / manual dispatch). Out-of-scope models keep their last result.
-const PROBE_SCOPE = (process.env.PROBE_SCOPE || 'all').toLowerCase();
+// Paid policy: higher-tier ("paid"/GO) models are asserted STABLE (green) without a
+// live probe — only the lowest tier ("free"/BASIC) is actually checked, since those
+// are the ones that flap. Set PAID_ALWAYS_STABLE=0 (e.g. a manual dispatch) to
+// live-probe the paid models too.
+const PAID_ALWAYS_STABLE = process.env.PAID_ALWAYS_STABLE !== '0';
 
 const ts = () => new Date().toISOString();
 const delay = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -128,20 +128,14 @@ async function runProbes(history) {
     console.warn(`[${ts()}] WARNING: ZYLO_API_KEY secret is NOT set. Models cannot be live-checked and will show as UNVERIFIED. Set it (use a limitless key) to enable real 200/else checks.`);
   }
 
-  // Scope by plan tier (the cron that fired decides). 'free' = lowest tier present,
-  // 'pro'/'paid' = the higher tiers. Out-of-scope models are skipped so each tier
-  // refreshes on its own cadence (free every 4h, pro weekly).
+  // Plan tiers: the lowest tier present ("free"/BASIC) is live-probed; everything
+  // above it ("paid"/GO) is asserted stable by policy (PAID_ALWAYS_STABLE) and not
+  // probed — only an explicit admin override changes a paid model's state.
   const ranks = allModels.map((m) => planRank(m && m.min_plan)).filter((r) => r != null);
   const lowestRank = ranks.length ? Math.min(...ranks) : 0;
-  const inScope = (m) => {
-    if (PROBE_SCOPE === 'all') return true;
-    const r = planRank(m && m.min_plan);
-    const isLow = r != null && r === lowestRank;
-    return (PROBE_SCOPE === 'free' || PROBE_SCOPE === 'basic') ? isLow : !isLow;
-  };
-  if (PROBE_SCOPE !== 'all') {
-    console.log(`Probe scope = ${PROBE_SCOPE} (lowest tier rank=${lowestRank}; ${allModels.filter(inScope).length}/${allModels.length} models in scope).`);
-  }
+  const isPaid = (m) => { const r = planRank(m && m.min_plan); return r != null && r > lowestRank; };
+  const paidCount = allModels.filter(isPaid).length;
+  console.log(`Tiers: lowest rank=${lowestRank}; ${paidCount} paid model(s) ${PAID_ALWAYS_STABLE ? 'asserted STABLE (not probed)' : 'will be probed'}.`);
 
   if (apiUp && allModels.length > 0) {
     let i = 0;
@@ -153,16 +147,16 @@ async function runProbes(history) {
 
         const ov = overrides[m.id];
         let result;
-        if (ov && (ov.state === 'maintenance' || ov.state === 'down')) {
+        if (ov && (ov.state === 'stable' || ov.state === 'maintenance' || ov.state === 'down')) {
           // Admin override: skip the real probe entirely.
           const note = (ov.note == null ? '' : String(ov.note)).slice(0, 160);
-          result = ov.state === 'maintenance'
-            ? { up: false, ping: 0, verified: false, maintenance: true, msg: 'Maintenance' + (note ? ' — ' + note : ' (set by admin)') }
-            : { up: false, ping: 0, verified: true, msg: 'Flagged down by admin' + (note ? ' — ' + note : '') };
+          if (ov.state === 'stable') result = { up: true, ping: 0, verified: true, msg: 'Stable' + (note ? ' — ' + note : ' (set by admin)') };
+          else if (ov.state === 'maintenance') result = { up: false, ping: 0, verified: false, maintenance: true, msg: 'Maintenance' + (note ? ' — ' + note : ' (set by admin)') };
+          else result = { up: false, ping: 0, verified: true, msg: 'Flagged down by admin' + (note ? ' — ' + note : '') };
           console.log(`  ⚙ ${m.id} — override: ${ov.state}`);
-        } else if (!inScope(m)) {
-          // Out of scope for this run (different tier's cadence) — leave it untouched.
-          continue;
+        } else if (isPaid(m) && PAID_ALWAYS_STABLE) {
+          // Paid model asserted stable by policy — not live-probed.
+          result = { up: true, ping: 0, verified: true, msg: 'Stable — paid model (policy: not live-probed)' };
         } else if (!apiKey) {
           // Honest: we genuinely don't know. Neutral, not green, not red.
           result = { up: true, ping: 0, verified: false, msg: 'Unverified — ZYLO_API_KEY secret not set' };
