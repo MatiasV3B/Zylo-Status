@@ -12,10 +12,10 @@ name: Zylo Uptime Monitor
 
 on:
   schedule:
-    # Only the lowest tier ("free"/BASIC) is live-probed — those are the models that
+    # Only the lowest tier (BASIC) is live-probed — those are the models that
     # flap. Higher-tier ("paid"/GO) models are asserted stable by the prober and not
     # probed (see PAID_ALWAYS_STABLE), so they don't need their own cadence.
-    - cron: '0 */4 * * *'    # probe FREE / BASIC models — every 4 hours
+    - cron: '0 */4 * * *'    # probe BASIC models — every 4 hours
   workflow_dispatch:          # manual run; optionally live-probe the paid models too
     inputs:
       paid:

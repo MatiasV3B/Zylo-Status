@@ -10,7 +10,7 @@ const HISTORY_FILE = resolve(__dirname, 'data/history.json');
 const OVERRIDES_FILE = resolve(__dirname, 'data/overrides.json');
 const API_URL = 'https://api.zyloai.net';
 
-// Spacing between model probes. A free key is rate-limited to 10 req/min, so we
+// Spacing between model probes. A Basic key is rate-limited to 10 req/min, so we
 // never fire faster than one every 600ms. With a limitless probe key this is just
 // gentle pacing so we don't hammer the upstream providers.
 const PROBE_SPACING_MS = 600;
@@ -18,7 +18,7 @@ const PROBE_SPACING_MS = 600;
 // money even with a limitless key), so it can be disabled with ZYLO_PROBE_IMAGES=0.
 const PROBE_IMAGES = process.env.ZYLO_PROBE_IMAGES !== '0';
 // Paid policy: higher-tier ("paid"/GO) models are asserted STABLE (green) without a
-// live probe — only the lowest tier ("free"/BASIC) is actually checked, since those
+// live probe — only the lowest tier (BASIC) is actually checked, since those
 // are the ones that flap. Set PAID_ALWAYS_STABLE=0 (e.g. a manual dispatch) to
 // live-probe the paid models too.
 const PAID_ALWAYS_STABLE = process.env.PAID_ALWAYS_STABLE !== '0';
@@ -26,10 +26,11 @@ const PAID_ALWAYS_STABLE = process.env.PAID_ALWAYS_STABLE !== '0';
 const ts = () => new Date().toISOString();
 const delay = (ms) => new Promise((r) => setTimeout(r, ms));
 
-// Plan hierarchy rank (free < BASIC < GO < PRO < MEGA < ENTERPRISE; limitless = all).
-// Returns undefined for unknown/non-hierarchical plans.
+// Plan hierarchy rank (BASIC < GO < PRO < MEGA < ENTERPRISE; limitless = all).
+// BASIC is the entry tier — there is no "free" plan. Returns undefined for
+// unknown/non-hierarchical plans.
 function planRank(p) {
-  const R = { free: 0, basic: 1, go: 2, pro: 3, mega: 4, enterprise: 5, limitless: 99 };
+  const R = { basic: 1, go: 2, pro: 3, mega: 4, enterprise: 5, limitless: 99 };
   return R[String(p == null ? '' : p).toLowerCase()];
 }
 
@@ -128,7 +129,7 @@ async function runProbes(history) {
     console.warn(`[${ts()}] WARNING: ZYLO_API_KEY secret is NOT set. Models cannot be live-checked and will show as UNVERIFIED. Set it (use a limitless key) to enable real 200/else checks.`);
   }
 
-  // Plan tiers: the lowest tier present ("free"/BASIC) is live-probed; everything
+  // Plan tiers: the lowest tier present (BASIC) is live-probed; everything
   // above it ("paid"/GO) is asserted stable by policy (PAID_ALWAYS_STABLE) and not
   // probed — only an explicit admin override changes a paid model's state.
   const ranks = allModels.map((m) => planRank(m && m.min_plan)).filter((r) => r != null);
