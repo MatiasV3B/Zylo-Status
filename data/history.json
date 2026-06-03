@@ -5,12 +5,6 @@
     "uptime": 100,
     "checks": [
       {
-        "timestamp": "2026-05-31T22:46:45.514Z",
-        "up": true,
-        "ping": 403,
-        "msg": "Operational (HTTP 200)"
-      },
-      {
         "timestamp": "2026-05-31T22:50:54.688Z",
         "up": true,
         "ping": 448,
@@ -206,20 +200,22 @@
         "msg": "Operational (HTTP 200)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:40:51.081Z",
+        "up": true,
+        "ping": 482,
+        "msg": "Operational (HTTP 200)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-gemini-3": {
     "id": "model-gemini-3",
     "name": "Gemini 3.0 Flash",
-    "uptime": 96.67,
+    "uptime": 93.33,
     "checks": [
-      {
-        "timestamp": "2026-05-31T22:46:45.515Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:50:54.689Z",
         "up": true,
@@ -416,20 +412,22 @@
         "msg": "OK (HTTP 200, 3249ms)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:00.715Z",
+        "up": false,
+        "ping": 473,
+        "msg": "Down — HTTP 502: {\"error\":\"Upstream temporarily unavailable (502)\"}",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-qwen-3-7": {
     "id": "model-qwen-3-7",
     "name": "Qwen 3.7 Max Thinking",
-    "uptime": 90,
+    "uptime": 86.67,
     "checks": [
-      {
-        "timestamp": "2026-05-31T22:46:45.515Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:50:54.689Z",
         "up": true,
@@ -626,20 +624,22 @@
         "msg": "OK (HTTP 200, 11802ms)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:01.740Z",
+        "up": false,
+        "ping": 426,
+        "msg": "Down — HTTP 502: {\"error\":\"Upstream temporarily unavailable (502)\"}",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-nova": {
     "id": "model-nova",
     "name": "Amazon Nova Fast",
-    "uptime": 96.67,
+    "uptime": 93.33,
     "checks": [
-      {
-        "timestamp": "2026-05-31T22:46:45.515Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:50:54.689Z",
         "up": true,
@@ -836,20 +836,22 @@
         "msg": "OK (HTTP 200, 3567ms)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:02.764Z",
+        "up": false,
+        "ping": 422,
+        "msg": "Down — HTTP 502: {\"error\":\"Upstream temporarily unavailable (502)\"}",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-deepseek-v3": {
     "id": "model-deepseek-v3",
     "name": "DeepSeek V3 0324",
-    "uptime": 96.67,
+    "uptime": 93.33,
     "checks": [
-      {
-        "timestamp": "2026-05-31T22:46:45.515Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:50:54.689Z",
         "up": true,
@@ -1046,20 +1048,22 @@
         "msg": "OK (HTTP 200, 3230ms)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:03.781Z",
+        "up": false,
+        "ping": 418,
+        "msg": "Down — HTTP 502: {\"error\":\"Upstream temporarily unavailable (502)\"}",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-deepseek-v3-2": {
     "id": "model-deepseek-v3-2",
     "name": "DeepSeek V3.2",
-    "uptime": 80,
+    "uptime": 76.67,
     "checks": [
-      {
-        "timestamp": "2026-05-31T22:46:45.515Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:50:54.689Z",
         "up": true,
@@ -1256,20 +1260,22 @@
         "msg": "OK (HTTP 200, 13769ms)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:40:52.403Z",
+        "up": false,
+        "ping": 1320,
+        "msg": "Down — HTTP 502: {\"error\":\"Upstream temporarily unavailable (502)\"}",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-gpt-oss": {
     "id": "model-gpt-oss",
     "name": "GPT-OSS 120B",
-    "uptime": 70,
+    "uptime": 66.67,
     "checks": [
-      {
-        "timestamp": "2026-05-31T22:46:45.516Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:50:54.689Z",
         "up": true,
@@ -1466,20 +1472,22 @@
         "msg": "Down — timeout (30s)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:40:55.507Z",
+        "up": false,
+        "ping": 427,
+        "msg": "Down — HTTP 502: {\"error\":\"Upstream temporarily unavailable (502)\"}",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-nemotron": {
     "id": "model-nemotron",
     "name": "Nemotron 3 Super",
-    "uptime": 66.67,
+    "uptime": 63.33,
     "checks": [
-      {
-        "timestamp": "2026-05-31T22:46:45.516Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:50:54.689Z",
         "up": true,
@@ -1676,20 +1684,22 @@
         "msg": "OK (HTTP 200, 7698ms)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:40:56.524Z",
+        "up": false,
+        "ping": 417,
+        "msg": "Down — HTTP 502: {\"error\":\"Upstream temporarily unavailable (502)\"}",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-llama-3-1": {
     "id": "model-llama-3-1",
     "name": "Llama 3.1 8B",
-    "uptime": 96.67,
+    "uptime": 93.33,
     "checks": [
-      {
-        "timestamp": "2026-05-31T22:46:45.515Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:50:54.688Z",
         "up": true,
@@ -1886,20 +1896,22 @@
         "msg": "Down — HTTP 502: {\"error\":\"Upstream temporarily unavailable (502)\"}",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:40:53.441Z",
+        "up": false,
+        "ping": 436,
+        "msg": "Down — HTTP 502: {\"error\":\"Upstream temporarily unavailable (502)\"}",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-deepseek-v4": {
     "id": "model-deepseek-v4",
     "name": "DeepSeek V4 Flash",
-    "uptime": 100,
+    "uptime": 96.67,
     "checks": [
-      {
-        "timestamp": "2026-05-31T22:46:45.515Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:50:54.688Z",
         "up": true,
@@ -2096,20 +2108,22 @@
         "msg": "OK (HTTP 200, 2711ms)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:40:54.480Z",
+        "up": false,
+        "ping": 437,
+        "msg": "Down — HTTP 502: {\"error\":\"Upstream temporarily unavailable (502)\"}",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-gemini-2-5": {
     "id": "model-gemini-2-5",
     "name": "Gemini 2.5 Flash Lite",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-05-31T22:46:45.515Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:50:54.688Z",
         "up": true,
@@ -2306,20 +2320,22 @@
         "msg": "OK (HTTP 200, 1559ms)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:40:57.564Z",
+        "up": false,
+        "ping": 439,
+        "msg": "Down — HTTP 502: {\"error\":\"Upstream temporarily unavailable (502)\"}",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-gemini-3-1-lite": {
     "id": "model-gemini-3-1-lite",
     "name": "Gemini 3.1 Flash Lite",
-    "uptime": 96.67,
+    "uptime": 93.33,
     "checks": [
-      {
-        "timestamp": "2026-05-31T22:46:45.515Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:50:54.688Z",
         "up": true,
@@ -2516,20 +2532,22 @@
         "msg": "OK (HTTP 200, 2188ms)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:40:58.591Z",
+        "up": false,
+        "ping": 425,
+        "msg": "Down — HTTP 502: {\"error\":\"Upstream temporarily unavailable (502)\"}",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-gemma-4": {
     "id": "model-gemma-4",
     "name": "Gemma 4 31B",
-    "uptime": 96.67,
+    "uptime": 93.33,
     "checks": [
-      {
-        "timestamp": "2026-05-31T22:46:45.515Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:50:54.688Z",
         "up": true,
@@ -2726,20 +2744,22 @@
         "msg": "OK (HTTP 200, 3307ms)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:40:59.640Z",
+        "up": false,
+        "ping": 449,
+        "msg": "Down — HTTP 502: {\"error\":\"Upstream temporarily unavailable (502)\"}",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-llama-4": {
     "id": "model-llama-4",
     "name": "Llama 4 Maverick",
-    "uptime": 60,
+    "uptime": 56.67,
     "checks": [
-      {
-        "timestamp": "2026-05-31T22:46:45.516Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:50:54.690Z",
         "up": true,
@@ -2936,6 +2956,14 @@
         "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 429 - {\\\"detail\\\":\\\"Rate limit exceeded\\\"}\"}",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:31.371Z",
+        "up": false,
+        "ping": 24578,
+        "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream call failed: model temporarily unavailable\"}",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -2944,12 +2972,6 @@
     "name": "Mimo Flash",
     "uptime": 66.67,
     "checks": [
-      {
-        "timestamp": "2026-05-31T22:46:45.516Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:50:54.690Z",
         "up": true,
@@ -3146,20 +3168,22 @@
         "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 429 - {\\\"detail\\\":\\\"Rate limit exceeded\\\"}\"}",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:33.857Z",
+        "up": true,
+        "ping": 1884,
+        "msg": "OK (HTTP 200, 1884ms)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-mimo-omni": {
     "id": "model-mimo-omni",
     "name": "Mimo V2 Omni",
-    "uptime": 73.33,
+    "uptime": 70,
     "checks": [
-      {
-        "timestamp": "2026-05-31T22:46:45.516Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:50:54.690Z",
         "up": true,
@@ -3356,6 +3380,14 @@
         "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 429 - {\\\"detail\\\":\\\"Rate limit exceeded\\\"}\"}",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:51.788Z",
+        "up": false,
+        "ping": 2487,
+        "msg": "Down — HTTP 502: {\"error\":\"Upstream temporarily unavailable (502)\"}",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -3364,12 +3396,6 @@
     "name": "Mimo V2 Pro",
     "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-05-31T22:46:45.516Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:50:54.690Z",
         "up": true,
@@ -3566,6 +3592,14 @@
         "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 429 - {\\\"detail\\\":\\\"Rate limit exceeded\\\"}\"}",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:57.073Z",
+        "up": true,
+        "ping": 4683,
+        "msg": "OK (HTTP 200, 4683ms)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -3574,12 +3608,6 @@
     "name": "Qwen Coder 30B",
     "uptime": 66.67,
     "checks": [
-      {
-        "timestamp": "2026-05-31T22:46:45.516Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:50:54.690Z",
         "up": true,
@@ -3776,20 +3804,22 @@
         "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 429 - {\\\"detail\\\":\\\"Rate limit exceeded\\\"}\"}",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:36.808Z",
+        "up": true,
+        "ping": 2351,
+        "msg": "OK (HTTP 200, 2351ms)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-qwen-3-6": {
     "id": "model-qwen-3-6",
     "name": "Qwen 3.6 Plus",
-    "uptime": 56.67,
+    "uptime": 53.33,
     "checks": [
-      {
-        "timestamp": "2026-05-31T22:46:45.516Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:50:54.690Z",
         "up": true,
@@ -3986,6 +4016,14 @@
         "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 429 - {\\\"detail\\\":\\\"Rate limit exceeded\\\"}\"}",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:46.343Z",
+        "up": false,
+        "ping": 8934,
+        "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream call failed: model temporarily unavailable\"}",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -3994,12 +4032,6 @@
     "name": "Mistral Small 3.2 24B",
     "uptime": 70,
     "checks": [
-      {
-        "timestamp": "2026-05-31T22:46:45.516Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:50:54.690Z",
         "up": true,
@@ -4196,6 +4228,14 @@
         "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 429 - {\\\"detail\\\":\\\"Rate limit exceeded\\\"}\"}",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:48.701Z",
+        "up": true,
+        "ping": 1757,
+        "msg": "OK (HTTP 200, 1757ms)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -4204,12 +4244,6 @@
     "name": "Claude Opus 4.8 Fast",
     "uptime": 100,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.567Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.517Z",
         "up": true,
@@ -4404,6 +4438,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:48.701Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -4412,12 +4454,6 @@
     "name": "GPT-5.2 Codex",
     "uptime": 73.33,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.567Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.516Z",
         "up": true,
@@ -4612,6 +4648,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:48.701Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -4620,12 +4664,6 @@
     "name": "Mistral Medium 3.1",
     "uptime": 100,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.567Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.516Z",
         "up": true,
@@ -4820,6 +4858,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:48.701Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -4828,12 +4874,6 @@
     "name": "Codestral 2508",
     "uptime": 100,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.567Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.516Z",
         "up": true,
@@ -5028,6 +5068,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:46.343Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -5036,12 +5084,6 @@
     "name": "Llama 4 Scout",
     "uptime": 100,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.567Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.516Z",
         "up": true,
@@ -5236,6 +5278,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:46.343Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -5244,12 +5294,6 @@
     "name": "Llama 3.3 70B Instruct",
     "uptime": 100,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.567Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.516Z",
         "up": true,
@@ -5444,6 +5488,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:46.343Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -5452,12 +5504,6 @@
     "name": "Nemotron 3 Nano 30B A3B",
     "uptime": 100,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.567Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.516Z",
         "up": true,
@@ -5652,6 +5698,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:46.344Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -5660,12 +5714,6 @@
     "name": "Claude Haiku 4.5",
     "uptime": 100,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.567Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.516Z",
         "up": true,
@@ -5860,6 +5908,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:46.344Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -5868,12 +5924,6 @@
     "name": "Claude Sonnet 4.5",
     "uptime": 100,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.567Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.516Z",
         "up": true,
@@ -6068,20 +6118,22 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:46.343Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-deepseek-v4-pro": {
     "id": "model-deepseek-v4-pro",
     "name": "DeepSeek V4 Pro",
-    "uptime": 66.67,
+    "uptime": 63.33,
     "checks": [
-      {
-        "timestamp": "2026-05-31T22:46:45.516Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:50:54.689Z",
         "up": true,
@@ -6278,20 +6330,22 @@
         "msg": "Down — HTTP 502: {\"error\":\"Upstream temporarily unavailable (502)\"}",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:04.803Z",
+        "up": false,
+        "ping": 420,
+        "msg": "Down — HTTP 502: {\"error\":\"Upstream temporarily unavailable (502)\"}",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-glm-5": {
     "id": "model-glm-5",
     "name": "GLM 5",
-    "uptime": 63.33,
+    "uptime": 60,
     "checks": [
-      {
-        "timestamp": "2026-05-31T22:46:45.516Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:50:54.690Z",
         "up": true,
@@ -6488,6 +6542,14 @@
         "msg": "Down — HTTP 502: {\"error\":\"Upstream temporarily unavailable (502)\"}",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:06.194Z",
+        "up": false,
+        "ping": 791,
+        "msg": "Down — HTTP 502: {\"error\":\"Upstream temporarily unavailable (502)\"}",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -6496,12 +6558,6 @@
     "name": "GPT-5.5 Pro",
     "uptime": 73.33,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.568Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.517Z",
         "up": true,
@@ -6696,6 +6752,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:57.073Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -6704,12 +6768,6 @@
     "name": "GPT-5.4",
     "uptime": 73.33,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.568Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.517Z",
         "up": true,
@@ -6904,6 +6962,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:57.073Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -6912,12 +6978,6 @@
     "name": "GPT-5.4 Mini",
     "uptime": 73.33,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.568Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.517Z",
         "up": true,
@@ -7112,6 +7172,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:57.073Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -7120,12 +7188,6 @@
     "name": "MiniMax M2",
     "uptime": 100,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.568Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.517Z",
         "up": true,
@@ -7320,6 +7382,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:57.073Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -7328,12 +7398,6 @@
     "name": "GLM 5 Turbo",
     "uptime": 100,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.568Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.517Z",
         "up": true,
@@ -7528,6 +7592,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:57.073Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -7536,12 +7608,6 @@
     "name": "GLM 4.7",
     "uptime": 100,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.568Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.517Z",
         "up": true,
@@ -7736,6 +7802,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:57.073Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -7744,12 +7818,6 @@
     "name": "GLM 4.7 Flash",
     "uptime": 100,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.568Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.517Z",
         "up": true,
@@ -7944,6 +8012,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:57.073Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -7952,12 +8028,6 @@
     "name": "GLM 4.6",
     "uptime": 100,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.568Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.517Z",
         "up": true,
@@ -8152,6 +8222,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:57.073Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -8160,12 +8238,6 @@
     "name": "Qwen 3.6 Max (Preview)",
     "uptime": 100,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.568Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.517Z",
         "up": true,
@@ -8360,6 +8432,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:57.073Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -8368,12 +8448,6 @@
     "name": "Qwen 3 Max",
     "uptime": 100,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.567Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.517Z",
         "up": true,
@@ -8568,6 +8642,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:57.073Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -8576,12 +8658,6 @@
     "name": "Devstral 2512",
     "uptime": 100,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.568Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.517Z",
         "up": true,
@@ -8776,6 +8852,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:57.073Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -8784,12 +8868,6 @@
     "name": "Devstral Small",
     "uptime": 73.33,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.568Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.517Z",
         "up": true,
@@ -8984,6 +9062,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:57.073Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -8992,12 +9078,6 @@
     "name": "Gemini 3.5 Flash",
     "uptime": 100,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.568Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.517Z",
         "up": true,
@@ -9192,6 +9272,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:57.073Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -9200,12 +9288,6 @@
     "name": "Gemini 3.1 Pro (Preview)",
     "uptime": 100,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.568Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.517Z",
         "up": true,
@@ -9400,6 +9482,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:57.073Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -9408,12 +9498,6 @@
     "name": "Gemini 2.5 Pro",
     "uptime": 100,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.568Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.517Z",
         "up": true,
@@ -9608,6 +9692,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:57.073Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -9616,12 +9708,6 @@
     "name": "GPT-5.3 Codex",
     "uptime": 73.33,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.568Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.517Z",
         "up": true,
@@ -9816,6 +9902,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:57.073Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -9824,12 +9918,6 @@
     "name": "Claude Opus 4.7",
     "uptime": 100,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.568Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.517Z",
         "up": true,
@@ -10024,6 +10112,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:57.073Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -10032,12 +10128,6 @@
     "name": "Claude Opus 4.7 (Fast)",
     "uptime": 100,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.568Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.517Z",
         "up": true,
@@ -10232,6 +10322,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:57.073Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -10240,12 +10338,6 @@
     "name": "Claude Sonnet 4.6",
     "uptime": 100,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.568Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.518Z",
         "up": true,
@@ -10440,6 +10532,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:57.073Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -10448,12 +10548,6 @@
     "name": "Claude Opus 4.6",
     "uptime": 100,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.568Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.517Z",
         "up": true,
@@ -10648,6 +10742,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:57.073Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -10656,12 +10758,6 @@
     "name": "GPT-5.5",
     "uptime": 73.33,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.569Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.518Z",
         "up": true,
@@ -10856,6 +10952,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:57.073Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -10864,12 +10968,6 @@
     "name": "Grok 4.20",
     "uptime": 100,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.568Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.518Z",
         "up": true,
@@ -11064,6 +11162,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:57.073Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -11072,12 +11178,6 @@
     "name": "Kimi K2.6",
     "uptime": 100,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.568Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.518Z",
         "up": true,
@@ -11272,6 +11372,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:57.073Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -11280,12 +11388,6 @@
     "name": "Kimi K2 (0905)",
     "uptime": 100,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.568Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.518Z",
         "up": true,
@@ -11480,6 +11582,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:57.073Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -11488,12 +11598,6 @@
     "name": "Kimi K2",
     "uptime": 100,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.568Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.518Z",
         "up": true,
@@ -11688,6 +11792,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:57.073Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -11696,12 +11808,6 @@
     "name": "MiniMax M2.5",
     "uptime": 100,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.568Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.518Z",
         "up": true,
@@ -11896,6 +12002,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:57.073Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -11904,12 +12018,6 @@
     "name": "MiniMax M2.1",
     "uptime": 100,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.568Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.518Z",
         "up": true,
@@ -12104,6 +12212,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:57.073Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -12112,12 +12228,6 @@
     "name": "Qwen 3.6 Flash",
     "uptime": 100,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.568Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.518Z",
         "up": true,
@@ -12312,6 +12422,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:57.073Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -12320,12 +12438,6 @@
     "name": "Qwen 3.6 35B A3B",
     "uptime": 100,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.568Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.518Z",
         "up": true,
@@ -12520,6 +12632,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:57.073Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -12528,12 +12648,6 @@
     "name": "Qwen 3 Coder Plus",
     "uptime": 100,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.568Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.518Z",
         "up": true,
@@ -12728,6 +12842,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:57.073Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -12736,12 +12858,6 @@
     "name": "GLM 5.1",
     "uptime": 76.67,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.569Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.518Z",
         "up": true,
@@ -12936,20 +13052,22 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:41:57.073Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-gpt-5-4-nano": {
     "id": "model-gpt-5-4-nano",
     "name": "GPT 5.4 Nano",
-    "uptime": 56.67,
+    "uptime": 53.33,
     "checks": [
-      {
-        "timestamp": "2026-05-31T22:46:45.518Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:50:54.691Z",
         "up": true,
@@ -13146,6 +13264,14 @@
         "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 429 - {\\\"detail\\\":\\\"Rate limit exceeded\\\"}\"}",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:42:00.187Z",
+        "up": false,
+        "ping": 2512,
+        "msg": "Down — HTTP 502: {\"error\":\"Upstream temporarily unavailable (502)\"}",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -13154,12 +13280,6 @@
     "name": "Grok 4.3",
     "uptime": 86.67,
     "checks": [
-      {
-        "timestamp": "2026-05-31T22:46:45.518Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:50:54.692Z",
         "up": true,
@@ -13356,6 +13476,14 @@
         "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 429 - {\\\"detail\\\":\\\"Rate limit exceeded\\\"}\"}",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:42:04.181Z",
+        "up": true,
+        "ping": 3393,
+        "msg": "OK (HTTP 200, 3393ms)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -13364,12 +13492,6 @@
     "name": "Mimo V2.5",
     "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-05-31T22:46:45.518Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:50:54.692Z",
         "up": true,
@@ -13566,6 +13688,14 @@
         "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 429 - {\\\"detail\\\":\\\"Rate limit exceeded\\\"}\"}",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:42:08.947Z",
+        "up": true,
+        "ping": 4167,
+        "msg": "OK (HTTP 200, 4167ms)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -13574,12 +13704,6 @@
     "name": "Mimo V2.5 Pro",
     "uptime": 90,
     "checks": [
-      {
-        "timestamp": "2026-05-31T22:46:45.518Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:50:54.692Z",
         "up": true,
@@ -13776,6 +13900,14 @@
         "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 429 - {\\\"detail\\\":\\\"Rate limit exceeded\\\"}\"}",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:42:18.001Z",
+        "up": true,
+        "ping": 8455,
+        "msg": "OK (HTTP 200, 8455ms)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -13784,12 +13916,6 @@
     "name": "Kimi K2.5",
     "uptime": 90,
     "checks": [
-      {
-        "timestamp": "2026-05-31T22:46:45.519Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:50:54.692Z",
         "up": true,
@@ -13986,6 +14112,14 @@
         "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 429 - {\\\"detail\\\":\\\"Rate limit exceeded\\\"}\"}",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:42:22.957Z",
+        "up": true,
+        "ping": 4356,
+        "msg": "OK (HTTP 200, 4356ms)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -13994,12 +14128,6 @@
     "name": "MiniMax M2.7",
     "uptime": 93.33,
     "checks": [
-      {
-        "timestamp": "2026-05-31T22:46:45.519Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:50:54.692Z",
         "up": true,
@@ -14196,6 +14324,14 @@
         "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 429 - {\\\"detail\\\":\\\"Rate limit exceeded\\\"}\"}",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:42:27.282Z",
+        "up": true,
+        "ping": 3724,
+        "msg": "OK (HTTP 200, 3724ms)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -14204,12 +14340,6 @@
     "name": "Claude Opus 4.8",
     "uptime": 100,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.569Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.519Z",
         "up": true,
@@ -14404,6 +14534,14 @@
         "msg": "Stable — paid model (policy: not live-probed)",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:42:27.282Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -14412,12 +14550,6 @@
     "name": "Nano Banana (Gemini 2.5 Flash Image)",
     "uptime": 100,
     "checks": [
-      {
-        "timestamp": "2026-05-31T21:46:30.569Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Paid model (real check skipped, assumed active)"
-      },
       {
         "timestamp": "2026-05-31T22:46:45.519Z",
         "up": true,
@@ -14607,6 +14739,14 @@
       },
       {
         "timestamp": "2026-06-03T08:53:55.518Z",
+        "up": true,
+        "ping": 0,
+        "msg": "Stable — paid model (policy: not live-probed)",
+        "verified": true,
+        "maintenance": false
+      },
+      {
+        "timestamp": "2026-06-03T16:42:27.282Z",
         "up": true,
         "ping": 0,
         "msg": "Stable — paid model (policy: not live-probed)",
