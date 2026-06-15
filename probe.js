@@ -14,12 +14,15 @@ const API_URL = 'https://api.zyloai.net';
 // never fire faster than one every 600ms. With a limitless probe key this is just
 // gentle pacing so we don't hammer the upstream providers.
 const PROBE_SPACING_MS = 600;
-// One image model in the catalog. Image generation is real GPU inference (costs
-// money even with a limitless key), so it can be disabled with ZYLO_PROBE_IMAGES=0.
-const PROBE_IMAGES = process.env.ZYLO_PROBE_IMAGES !== '0';
-// Paid policy: higher-tier ("paid"/GO) models are asserted STABLE (green) without a
-// live probe — only the lowest tier (BASIC) is actually checked, since those
-// are the ones that flap. Set PAID_ALWAYS_STABLE=0 (e.g. a manual dispatch) to
+// Image models are NEVER live-probed by default. Image generation is real GPU
+// inference that costs money on every request (even with a limitless key), and the
+// catalog carries many image models. They are asserted STABLE (green) by policy,
+// exactly like paid models. Set ZYLO_PROBE_IMAGES=1 (e.g. a manual dispatch) to
+// actually live-check them.
+const PROBE_IMAGES = process.env.ZYLO_PROBE_IMAGES === '1';
+// Paid policy: higher-tier ("paid"/GO+) models are asserted STABLE (green) without a
+// live probe — only the lowest tier (BASIC) text models are actually checked, since
+// those are the ones that flap. Set PAID_ALWAYS_STABLE=0 (e.g. a manual dispatch) to
 // live-probe the paid models too.
 const PAID_ALWAYS_STABLE = process.env.PAID_ALWAYS_STABLE !== '0';
 
@@ -129,14 +132,20 @@ async function runProbes(history) {
     console.warn(`[${ts()}] WARNING: ZYLO_API_KEY secret is NOT set. Models cannot be live-checked and will show as UNVERIFIED. Set it (use a limitless key) to enable real 200/else checks.`);
   }
 
-  // Plan tiers: the lowest tier present (BASIC) is live-probed; everything
-  // above it ("paid"/GO) is asserted stable by policy (PAID_ALWAYS_STABLE) and not
-  // probed — only an explicit admin override changes a paid model's state.
-  const ranks = allModels.map((m) => planRank(m && m.min_plan)).filter((r) => r != null);
-  const lowestRank = ranks.length ? Math.min(...ranks) : 0;
-  const isPaid = (m) => { const r = planRank(m && m.min_plan); return r != null && r > lowestRank; };
-  const paidCount = allModels.filter(isPaid).length;
-  console.log(`Tiers: lowest rank=${lowestRank}; ${paidCount} paid model(s) ${PAID_ALWAYS_STABLE ? 'asserted STABLE (not probed)' : 'will be probed'}.`);
+  // Probe allowlist: a model is live-probed ONLY when it is explicitly BASIC tier AND
+  // a text model. Everything else is asserted stable by policy and never probed:
+  //   - image models (image generation is paid GPU inference — see PROBE_IMAGES),
+  //   - higher-tier ("paid"/GO+) text models (see PAID_ALWAYS_STABLE), and
+  //   - any model whose min_plan is missing or unrecognized — "not clearly BASIC" is
+  //     treated as "don't probe", so a newly-added model never gets probed by accident.
+  // This is a strict allowlist on purpose: adding a GO/PRO/image model (or one with a
+  // new/typo'd plan name) can never silently start it getting live-probed. Only an
+  // explicit admin override changes a not-probed model's state.
+  const BASIC_RANK = planRank('basic');
+  const isBasic = (m) => planRank(m && m.min_plan) === BASIC_RANK;
+  const basicTextCount = models.text.filter(isBasic).length;
+  const imageCount = models.image.length;
+  console.log(`Probe policy: ${basicTextCount} BASIC text model(s) live-probed; ${models.text.length - basicTextCount} non-BASIC text model(s) ${PAID_ALWAYS_STABLE ? 'asserted STABLE (not probed)' : 'will be probed'}; ${imageCount} image model(s) ${PROBE_IMAGES ? 'will be probed' : 'asserted STABLE (not probed)'}.`);
 
   if (apiUp && allModels.length > 0) {
     let i = 0;
@@ -145,6 +154,7 @@ async function runProbes(history) {
         if (!m || !m.id) { console.warn('Skipping model with missing id:', JSON.stringify(m)); continue; }
         const monitorId = `model-${m.id.replace(/[^a-z0-9_-]/gi, '-').toLowerCase()}`;
         const isText = textIds.has(m.id);
+        const isImage = !isText;
 
         const ov = overrides[m.id];
         let result;
@@ -155,14 +165,18 @@ async function runProbes(history) {
           else if (ov.state === 'maintenance') result = { up: false, ping: 0, verified: false, maintenance: true, msg: 'Maintenance' + (note ? ' — ' + note : ' (set by admin)') };
           else result = { up: false, ping: 0, verified: true, msg: 'Flagged down by admin' + (note ? ' — ' + note : '') };
           console.log(`  ⚙ ${m.id} — override: ${ov.state}`);
-        } else if (isPaid(m) && PAID_ALWAYS_STABLE) {
-          // Paid model asserted stable by policy — not live-probed.
+        } else if (isImage && !PROBE_IMAGES) {
+          // Image model asserted stable by policy — image generation is real GPU
+          // inference that costs money on every probe, so it is never live-checked.
+          result = { up: true, ping: 0, verified: true, msg: 'Stable — image model (policy: not live-probed)' };
+        } else if (!isImage && !isBasic(m) && PAID_ALWAYS_STABLE) {
+          // Non-BASIC text model (paid/GO+, or an unrecognized/missing tier) asserted
+          // stable by policy — never live-probed. New models default here unless they
+          // are clearly tagged BASIC, so adding a model never starts probing by accident.
           result = { up: true, ping: 0, verified: true, msg: 'Stable — paid model (policy: not live-probed)' };
         } else if (!apiKey) {
           // Honest: we genuinely don't know. Neutral, not green, not red.
           result = { up: true, ping: 0, verified: false, msg: 'Unverified — ZYLO_API_KEY secret not set' };
-        } else if (!isText && !PROBE_IMAGES) {
-          result = { up: true, ping: 0, verified: false, msg: 'Unverified — image checks disabled (ZYLO_PROBE_IMAGES=0)' };
         } else {
           if (i > 0) await delay(PROBE_SPACING_MS);
           i++;

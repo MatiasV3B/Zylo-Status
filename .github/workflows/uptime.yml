@@ -12,14 +12,20 @@ name: Zylo Uptime Monitor
 
 on:
   schedule:
-    # Only the lowest tier (BASIC) is live-probed — those are the models that
-    # flap. Higher-tier ("paid"/GO) models are asserted stable by the prober and not
-    # probed (see PAID_ALWAYS_STABLE), so they don't need their own cadence.
-    - cron: '0 */4 * * *'    # probe BASIC models — every 4 hours
-  workflow_dispatch:          # manual run; optionally live-probe the paid models too
+    # Only the lowest tier (BASIC) TEXT models are live-probed — those are the models
+    # that flap and cost nothing to check. Higher-tier ("paid"/GO+) models and ALL
+    # image models are asserted stable by the prober and not probed (see
+    # PAID_ALWAYS_STABLE / ZYLO_PROBE_IMAGES), so they don't need their own cadence.
+    - cron: '0 */4 * * *'    # probe BASIC text models — every 4 hours
+  workflow_dispatch:          # manual run; optionally live-probe paid and/or image models too
     inputs:
       paid:
         description: 'Paid (higher-tier) models'
+        type: choice
+        options: [stable, probe]
+        default: stable
+      images:
+        description: 'Image models (GPU inference — costs money)'
         type: choice
         options: [stable, probe]
         default: stable
@@ -65,6 +71,9 @@ jobs:
           # Paid models are asserted stable by default; a manual dispatch with
           # paid=probe live-checks them instead.
           PAID_ALWAYS_STABLE: ${{ github.event.inputs.paid == 'probe' && '0' || '1' }}
+          # Image models are never probed by default (GPU inference costs money on
+          # every request); a manual dispatch with images=probe live-checks them.
+          ZYLO_PROBE_IMAGES: ${{ github.event.inputs.images == 'probe' && '1' || '0' }}
         run: node probe.js
 
       # Persist history to main so the 30-check window accumulates across runs.
