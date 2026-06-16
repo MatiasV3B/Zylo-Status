@@ -25,6 +25,14 @@ const PROBE_IMAGES = process.env.ZYLO_PROBE_IMAGES === '1';
 // those are the ones that flap. Set PAID_ALWAYS_STABLE=0 (e.g. a manual dispatch) to
 // live-probe the paid models too.
 const PAID_ALWAYS_STABLE = process.env.PAID_ALWAYS_STABLE !== '0';
+// Hard never-probe denylist (sanitized ids — same form as the monitor id). These
+// models are asserted STABLE and NEVER live-checked, regardless of tier/type.
+// Use it for image-generation models the catalog serves under `text` (so the
+// image policy above doesn't catch them) — a probe there is a real, paid request.
+// Operator request 2026-06: leave "Gemini 3.1 Flash Image" alone.
+const NEVER_PROBE = new Set([
+  'gemini-3-1-flash-image',
+]);
 
 const ts = () => new Date().toISOString();
 const delay = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -153,6 +161,7 @@ async function runProbes(history) {
       try {
         if (!m || !m.id) { console.warn('Skipping model with missing id:', JSON.stringify(m)); continue; }
         const monitorId = `model-${m.id.replace(/[^a-z0-9_-]/gi, '-').toLowerCase()}`;
+        const cleanId = monitorId.slice('model-'.length);
         const isText = textIds.has(m.id);
         const isImage = !isText;
 
@@ -165,6 +174,11 @@ async function runProbes(history) {
           else if (ov.state === 'maintenance') result = { up: false, ping: 0, verified: false, maintenance: true, msg: 'Maintenance' + (note ? ' — ' + note : ' (set by admin)') };
           else result = { up: false, ping: 0, verified: true, msg: 'Flagged down by admin' + (note ? ' — ' + note : '') };
           console.log(`  ⚙ ${m.id} — override: ${ov.state}`);
+        } else if (NEVER_PROBE.has(cleanId)) {
+          // Never-probe denylist: asserted stable, never live-checked (e.g. an
+          // image-gen model served under `text` — a probe = a real paid request).
+          result = { up: true, ping: 0, verified: true, msg: 'Stable — excluido del probe por política' };
+          console.log(`  ⏭ ${m.id} — never-probe list`);
         } else if (isImage && !PROBE_IMAGES) {
           // Image model asserted stable by policy — image generation is real GPU
           // inference that costs money on every probe, so it is never live-checked.
