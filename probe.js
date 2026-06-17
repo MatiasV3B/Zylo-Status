@@ -33,6 +33,15 @@ const PAID_ALWAYS_STABLE = process.env.PAID_ALWAYS_STABLE !== '0';
 const NEVER_PROBE = new Set([
   'gemini-3-1-flash-image',
 ]);
+// Hard hide-from-page denylist (sanitized ids — same form as the monitor id).
+// Unlike NEVER_PROBE (which still SHOWS the model as a green "stable" monitor),
+// these models are removed from the status page ENTIRELY: never probed, never
+// recorded, and any existing monitor is deleted + kept out of the prune allowlist
+// so it stays gone. Use it to retire a model from the page WITHOUT removing it
+// from the product catalog. Operator request 2026-06: hide "MiniMax M3".
+const EXCLUDE_FROM_PAGE = new Set([
+  'minimax-m3',
+]);
 
 const ts = () => new Date().toISOString();
 const delay = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -162,6 +171,14 @@ async function runProbes(history) {
         if (!m || !m.id) { console.warn('Skipping model with missing id:', JSON.stringify(m)); continue; }
         const monitorId = `model-${m.id.replace(/[^a-z0-9_-]/gi, '-').toLowerCase()}`;
         const cleanId = monitorId.slice('model-'.length);
+
+        // Hidden from the status page: skip entirely and drop any existing monitor.
+        if (EXCLUDE_FROM_PAGE.has(cleanId)) {
+          if (history[monitorId]) delete history[monitorId];
+          console.log(`  ⊘ ${m.id} — hidden from status page (excluded)`);
+          continue;
+        }
+
         const isText = textIds.has(m.id);
         const isImage = !isText;
 
@@ -221,7 +238,11 @@ async function runProbes(history) {
   if (apiUp && allModels.length > 0) {
     const liveIds = new Set(['zylo-api-health']);
     for (const m of allModels) {
-      if (m && m.id) liveIds.add(`model-${m.id.replace(/[^a-z0-9_-]/gi, '-').toLowerCase()}`);
+      if (!m || !m.id) continue;
+      const mid = `model-${m.id.replace(/[^a-z0-9_-]/gi, '-').toLowerCase()}`;
+      // Excluded models stay OUT of the allowlist so any stray monitor is pruned.
+      if (EXCLUDE_FROM_PAGE.has(mid.slice('model-'.length))) continue;
+      liveIds.add(mid);
     }
     let pruned = 0;
     for (const id of Object.keys(history)) {
