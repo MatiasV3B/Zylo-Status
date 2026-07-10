@@ -2,16 +2,8 @@
   "zylo-api-health": {
     "id": "zylo-api-health",
     "name": "Zylo API Health",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:21:54.667Z",
-        "up": true,
-        "ping": 541,
-        "msg": "Operational (HTTP 200)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:07:54.197Z",
         "up": true,
@@ -243,6 +235,14 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.453Z",
+        "up": false,
+        "ping": 702,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -251,14 +251,6 @@
     "name": "Gemini 3.0 Flash",
     "uptime": 63.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:00.675Z",
-        "up": false,
-        "ping": 419,
-        "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 403 - {\\\"detail\\\":\\\"User is banned\\\"}\"}",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:07:59.527Z",
         "up": false,
@@ -490,6 +482,14 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.453Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -498,14 +498,6 @@
     "name": "Qwen 3.7 Max Thinking",
     "uptime": 63.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:21:59.656Z",
-        "up": false,
-        "ping": 388,
-        "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 403 - {\\\"detail\\\":\\\"User is banned\\\"}\"}",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:07:58.495Z",
         "up": false,
@@ -737,6 +729,14 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.453Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -745,14 +745,6 @@
     "name": "Amazon Nova Fast",
     "uptime": 63.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:05.532Z",
-        "up": false,
-        "ping": 385,
-        "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 403 - {\\\"detail\\\":\\\"User is banned\\\"}\"}",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:04.723Z",
         "up": false,
@@ -984,6 +976,14 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.453Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -992,14 +992,6 @@
     "name": "DeepSeek V3 0324",
     "uptime": 63.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:07.478Z",
-        "up": false,
-        "ping": 387,
-        "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 403 - {\\\"detail\\\":\\\"User is banned\\\"}\"}",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:06.760Z",
         "up": false,
@@ -1231,6 +1223,14 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.453Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -1239,14 +1239,6 @@
     "name": "DeepSeek V3.2",
     "uptime": 63.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:01.663Z",
-        "up": false,
-        "ping": 388,
-        "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 403 - {\\\"detail\\\":\\\"User is banned\\\"}\"}",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:00.578Z",
         "up": false,
@@ -1478,6 +1470,14 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.454Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -1486,14 +1486,6 @@
     "name": "GPT-OSS 120B",
     "uptime": 63.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:06.492Z",
-        "up": false,
-        "ping": 360,
-        "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 403 - {\\\"detail\\\":\\\"User is banned\\\"}\"}",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:05.734Z",
         "up": false,
@@ -1725,6 +1717,14 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.454Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -1733,14 +1733,6 @@
     "name": "Nemotron 3 Super",
     "uptime": 63.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:08.454Z",
-        "up": false,
-        "ping": 377,
-        "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 403 - {\\\"detail\\\":\\\"User is banned\\\"}\"}",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:07.896Z",
         "up": false,
@@ -1972,6 +1964,14 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.454Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -1980,14 +1980,6 @@
     "name": "Llama 3.1 8B",
     "uptime": 63.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:02.642Z",
-        "up": false,
-        "ping": 377,
-        "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 403 - {\\\"detail\\\":\\\"User is banned\\\"}\"}",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:01.610Z",
         "up": false,
@@ -2219,6 +2211,14 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.454Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -2227,14 +2227,6 @@
     "name": "DeepSeek V4 Flash",
     "uptime": 53.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:03.597Z",
-        "up": false,
-        "ping": 355,
-        "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 403 - {\\\"detail\\\":\\\"User is banned\\\"}\"}",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:02.656Z",
         "up": false,
@@ -2466,6 +2458,14 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.454Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -2474,14 +2474,6 @@
     "name": "Gemini 2.5 Flash Lite",
     "uptime": 63.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:21:55.977Z",
-        "up": false,
-        "ping": 1309,
-        "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 403 - {\\\"detail\\\":\\\"User is banned\\\"}\"}",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:07:55.577Z",
         "up": false,
@@ -2713,6 +2705,14 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.454Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -2721,14 +2721,6 @@
     "name": "Gemini 3.1 Flash Lite",
     "uptime": 63.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:21:58.668Z",
-        "up": false,
-        "ping": 2089,
-        "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 403 - {\\\"detail\\\":\\\"User is banned\\\"}\"}",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:07:56.695Z",
         "up": false,
@@ -2960,6 +2952,14 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.454Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -2968,14 +2968,6 @@
     "name": "Gemma 4 31B",
     "uptime": 13.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:04.546Z",
-        "up": false,
-        "ping": 349,
-        "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 403 - {\\\"detail\\\":\\\"User is banned\\\"}\"}",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:03.689Z",
         "up": false,
@@ -3207,6 +3199,14 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.454Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -3215,14 +3215,6 @@
     "name": "Llama 4 Maverick",
     "uptime": 26.67,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:14.205Z",
-        "up": false,
-        "ping": 370,
-        "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 403 - {\\\"detail\\\":\\\"User is banned\\\"}\"}",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:14.040Z",
         "up": false,
@@ -3454,6 +3446,14 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.454Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -3462,14 +3462,6 @@
     "name": "Mimo Flash",
     "uptime": 63.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:10.389Z",
-        "up": false,
-        "ping": 364,
-        "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 403 - {\\\"detail\\\":\\\"User is banned\\\"}\"}",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:09.949Z",
         "up": false,
@@ -3701,6 +3693,14 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.454Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -3709,14 +3709,6 @@
     "name": "Mimo V2 Omni",
     "uptime": 63.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:16.143Z",
-        "up": false,
-        "ping": 377,
-        "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 403 - {\\\"detail\\\":\\\"User is banned\\\"}\"}",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:16.061Z",
         "up": false,
@@ -3948,6 +3940,14 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.454Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -3956,14 +3956,6 @@
     "name": "Mimo V2 Pro",
     "uptime": 63.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:17.137Z",
-        "up": false,
-        "ping": 393,
-        "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 403 - {\\\"detail\\\":\\\"User is banned\\\"}\"}",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:17.103Z",
         "up": false,
@@ -4195,6 +4187,14 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.454Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -4203,14 +4203,6 @@
     "name": "Qwen Coder 30B",
     "uptime": 63.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:09.424Z",
-        "up": false,
-        "ping": 370,
-        "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 403 - {\\\"detail\\\":\\\"User is banned\\\"}\"}",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:08.917Z",
         "up": false,
@@ -4442,6 +4434,14 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.454Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -4450,14 +4450,6 @@
     "name": "Qwen 3.6 Plus",
     "uptime": 63.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:15.166Z",
-        "up": false,
-        "ping": 360,
-        "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 403 - {\\\"detail\\\":\\\"User is banned\\\"}\"}",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:15.060Z",
         "up": false,
@@ -4689,6 +4681,14 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.454Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -4697,14 +4697,6 @@
     "name": "Mistral Small 3.2 24B",
     "uptime": 63.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:13.236Z",
-        "up": false,
-        "ping": 346,
-        "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 403 - {\\\"detail\\\":\\\"User is banned\\\"}\"}",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:13.018Z",
         "up": false,
@@ -4936,22 +4928,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.454Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-claude-opus-4-8-fast": {
     "id": "model-claude-opus-4-8-fast",
     "name": "Claude Opus 4.8 Fast",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:14.206Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:14.040Z",
         "up": true,
@@ -5183,22 +5175,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.454Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-gpt-5-2-codex": {
     "id": "model-gpt-5-2-codex",
     "name": "GPT-5.2 Codex",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:14.206Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:14.040Z",
         "up": true,
@@ -5430,22 +5422,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.454Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-mistral-medium-3-1": {
     "id": "model-mistral-medium-3-1",
     "name": "Mistral Medium 3.1",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:14.206Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:14.040Z",
         "up": true,
@@ -5677,22 +5669,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.454Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-codestral-2508": {
     "id": "model-codestral-2508",
     "name": "Codestral 2508",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:14.206Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:14.040Z",
         "up": true,
@@ -5924,22 +5916,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.454Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-llama-4-scout": {
     "id": "model-llama-4-scout",
     "name": "Llama 4 Scout",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:12.289Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:12.009Z",
         "up": true,
@@ -6171,22 +6163,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.455Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-llama-3-3-70b-instruct": {
     "id": "model-llama-3-3-70b-instruct",
     "name": "Llama 3.3 70B Instruct",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:13.236Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:13.019Z",
         "up": true,
@@ -6418,22 +6410,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.455Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-nemotron-3-nano-30b-a3b": {
     "id": "model-nemotron-3-nano-30b-a3b",
     "name": "Nemotron 3 Nano 30B A3B",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:14.206Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:14.040Z",
         "up": true,
@@ -6665,22 +6657,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.455Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-claude-haiku-4-5": {
     "id": "model-claude-haiku-4-5",
     "name": "Claude Haiku 4.5",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:14.206Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:14.040Z",
         "up": true,
@@ -6912,22 +6904,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.455Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-claude-sonnet-4-5": {
     "id": "model-claude-sonnet-4-5",
     "name": "Claude Sonnet 4.5",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:14.206Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:14.040Z",
         "up": true,
@@ -7159,6 +7151,14 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.455Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -7167,14 +7167,6 @@
     "name": "DeepSeek V4 Pro",
     "uptime": 26.67,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:11.339Z",
-        "up": false,
-        "ping": 349,
-        "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 403 - {\\\"detail\\\":\\\"User is banned\\\"}\"}",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:10.966Z",
         "up": false,
@@ -7406,6 +7398,14 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.455Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -7414,14 +7414,6 @@
     "name": "GLM 5",
     "uptime": 63.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:12.289Z",
-        "up": false,
-        "ping": 350,
-        "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 403 - {\\\"detail\\\":\\\"User is banned\\\"}\"}",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:12.009Z",
         "up": false,
@@ -7653,22 +7645,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.455Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-gpt-5-5-pro": {
     "id": "model-gpt-5-5-pro",
     "name": "GPT-5.5 Pro",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:17.137Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:17.103Z",
         "up": true,
@@ -7900,22 +7892,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.455Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-gpt-5-4": {
     "id": "model-gpt-5-4",
     "name": "GPT-5.4",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:17.137Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:17.103Z",
         "up": true,
@@ -8147,22 +8139,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.455Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-gpt-5-4-mini": {
     "id": "model-gpt-5-4-mini",
     "name": "GPT-5.4 Mini",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:17.137Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:17.103Z",
         "up": true,
@@ -8394,22 +8386,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.455Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-minimax-m2": {
     "id": "model-minimax-m2",
     "name": "MiniMax M2",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:17.137Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:17.103Z",
         "up": true,
@@ -8641,22 +8633,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.455Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-glm-5-turbo": {
     "id": "model-glm-5-turbo",
     "name": "GLM 5 Turbo",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:17.137Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:17.103Z",
         "up": true,
@@ -8888,22 +8880,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.455Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-glm-4-7": {
     "id": "model-glm-4-7",
     "name": "GLM 4.7",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:17.137Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:17.103Z",
         "up": true,
@@ -9135,22 +9127,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.455Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-glm-4-7-flash": {
     "id": "model-glm-4-7-flash",
     "name": "GLM 4.7 Flash",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:17.137Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:17.103Z",
         "up": true,
@@ -9382,22 +9374,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.455Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-glm-4-6": {
     "id": "model-glm-4-6",
     "name": "GLM 4.6",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:17.137Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:17.103Z",
         "up": true,
@@ -9629,22 +9621,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.455Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-qwen3-6-max-preview": {
     "id": "model-qwen3-6-max-preview",
     "name": "Qwen 3.6 Max (Preview)",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:17.137Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:17.103Z",
         "up": true,
@@ -9876,22 +9868,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.455Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-qwen3-max": {
     "id": "model-qwen3-max",
     "name": "Qwen 3 Max",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:17.137Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:17.103Z",
         "up": true,
@@ -10123,22 +10115,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.455Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-devstral-2512": {
     "id": "model-devstral-2512",
     "name": "Devstral 2512",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:17.137Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:17.103Z",
         "up": true,
@@ -10370,22 +10362,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.455Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-devstral-small": {
     "id": "model-devstral-small",
     "name": "Devstral Small",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:17.137Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:17.103Z",
         "up": true,
@@ -10617,22 +10609,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.455Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-gemini-3-5-flash": {
     "id": "model-gemini-3-5-flash",
     "name": "Gemini 3.5 Flash",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:17.138Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:17.103Z",
         "up": true,
@@ -10859,6 +10851,14 @@
       },
       {
         "timestamp": "2026-07-10T10:49:08.730Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.455Z",
         "up": false,
         "ping": 0,
         "msg": "API Down — HTTP 500",
@@ -10870,16 +10870,8 @@
   "model-gemini-3-1-pro-preview": {
     "id": "model-gemini-3-1-pro-preview",
     "name": "Gemini 3.1 Pro (Preview)",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:17.138Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:17.103Z",
         "up": true,
@@ -11111,22 +11103,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.455Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-gemini-2-5-pro": {
     "id": "model-gemini-2-5-pro",
     "name": "Gemini 2.5 Pro",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:17.137Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:17.103Z",
         "up": true,
@@ -11358,22 +11350,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.455Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-gpt-5-3-codex": {
     "id": "model-gpt-5-3-codex",
     "name": "GPT-5.3 Codex",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:17.137Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:17.103Z",
         "up": true,
@@ -11605,22 +11597,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.455Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-claude-opus-4-7": {
     "id": "model-claude-opus-4-7",
     "name": "Claude Opus 4.7",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:17.138Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:17.103Z",
         "up": true,
@@ -11852,22 +11844,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.455Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-claude-opus-4-7-fast": {
     "id": "model-claude-opus-4-7-fast",
     "name": "Claude Opus 4.7 (Fast)",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:17.137Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:17.103Z",
         "up": true,
@@ -12099,22 +12091,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.455Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-claude-sonnet-4-6": {
     "id": "model-claude-sonnet-4-6",
     "name": "Claude Sonnet 4.6",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:17.138Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:17.104Z",
         "up": true,
@@ -12346,22 +12338,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.455Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-claude-opus-4-6": {
     "id": "model-claude-opus-4-6",
     "name": "Claude Opus 4.6",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:17.137Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:17.103Z",
         "up": true,
@@ -12593,22 +12585,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.455Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-gpt-5-5": {
     "id": "model-gpt-5-5",
     "name": "GPT-5.5",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:17.138Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:17.104Z",
         "up": true,
@@ -12840,22 +12832,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.456Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-grok-4-20": {
     "id": "model-grok-4-20",
     "name": "Grok 4.20",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:17.138Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:17.104Z",
         "up": true,
@@ -13087,22 +13079,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.456Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-kimi-k2-6": {
     "id": "model-kimi-k2-6",
     "name": "Kimi K2.6",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:17.138Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:17.104Z",
         "up": true,
@@ -13334,22 +13326,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.456Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-kimi-k2-0905": {
     "id": "model-kimi-k2-0905",
     "name": "Kimi K2 (0905)",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:17.138Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:17.104Z",
         "up": true,
@@ -13581,22 +13573,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.456Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-kimi-k2": {
     "id": "model-kimi-k2",
     "name": "Kimi K2",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:17.138Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:17.104Z",
         "up": true,
@@ -13828,22 +13820,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.456Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-minimax-m2-5": {
     "id": "model-minimax-m2-5",
     "name": "MiniMax M2.5",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:17.138Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:17.104Z",
         "up": true,
@@ -14075,22 +14067,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.456Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-minimax-m2-1": {
     "id": "model-minimax-m2-1",
     "name": "MiniMax M2.1",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:17.138Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:17.104Z",
         "up": true,
@@ -14322,22 +14314,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.456Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-qwen3-6-flash": {
     "id": "model-qwen3-6-flash",
     "name": "Qwen 3.6 Flash",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:17.138Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:17.104Z",
         "up": true,
@@ -14569,22 +14561,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.456Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-qwen3-6-35b-a3b": {
     "id": "model-qwen3-6-35b-a3b",
     "name": "Qwen 3.6 35B A3B",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:17.138Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:17.104Z",
         "up": true,
@@ -14816,22 +14808,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.456Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-qwen3-coder-plus": {
     "id": "model-qwen3-coder-plus",
     "name": "Qwen 3 Coder Plus",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:17.138Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:17.104Z",
         "up": true,
@@ -15063,22 +15055,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.456Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-glm-5-1": {
     "id": "model-glm-5-1",
     "name": "GLM 5.1",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:20.015Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:20.194Z",
         "up": true,
@@ -15310,6 +15302,14 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.456Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -15318,14 +15318,6 @@
     "name": "GPT 5.4 Nano",
     "uptime": 63.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:20.962Z",
-        "up": false,
-        "ping": 347,
-        "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 403 - {\\\"detail\\\":\\\"User is banned\\\"}\"}",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:21.293Z",
         "up": false,
@@ -15557,6 +15549,14 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.456Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -15565,14 +15565,6 @@
     "name": "Grok 4.3",
     "uptime": 63.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:21.906Z",
-        "up": false,
-        "ping": 343,
-        "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 403 - {\\\"detail\\\":\\\"User is banned\\\"}\"}",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:22.315Z",
         "up": false,
@@ -15804,6 +15796,14 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.456Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -15812,14 +15812,6 @@
     "name": "Mimo V2.5",
     "uptime": 63.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:18.108Z",
-        "up": false,
-        "ping": 370,
-        "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 403 - {\\\"detail\\\":\\\"User is banned\\\"}\"}",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:18.124Z",
         "up": false,
@@ -16051,6 +16043,14 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.456Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -16059,14 +16059,6 @@
     "name": "Mimo V2.5 Pro",
     "uptime": 63.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:19.055Z",
-        "up": false,
-        "ping": 346,
-        "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 403 - {\\\"detail\\\":\\\"User is banned\\\"}\"}",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:19.167Z",
         "up": false,
@@ -16298,6 +16290,14 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.456Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -16306,14 +16306,6 @@
     "name": "Kimi K2.5",
     "uptime": 63.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:22.857Z",
-        "up": false,
-        "ping": 351,
-        "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 403 - {\\\"detail\\\":\\\"User is banned\\\"}\"}",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:23.370Z",
         "up": false,
@@ -16545,6 +16537,14 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.456Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -16553,14 +16553,6 @@
     "name": "MiniMax M2.7",
     "uptime": 63.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:20.015Z",
-        "up": false,
-        "ping": 360,
-        "msg": "Down — HTTP 502: {\"error\":\"Upstream call failed: Upstream API Error: 403 - {\\\"detail\\\":\\\"User is banned\\\"}\"}",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:20.193Z",
         "up": false,
@@ -16792,22 +16784,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.456Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-claude-opus-4-8": {
     "id": "model-claude-opus-4-8",
     "name": "Claude Opus 4.8",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:20.015Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:20.193Z",
         "up": true,
@@ -17039,22 +17031,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.456Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-nanobanana": {
     "id": "model-nanobanana",
     "name": "Nano Banana (Gemini 2.5 Flash Image)",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:22.858Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — image model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:23.371Z",
         "up": true,
@@ -17286,22 +17278,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.456Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-flux-2": {
     "id": "model-flux-2",
     "name": "Flux 2",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:22.857Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — image model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:23.371Z",
         "up": true,
@@ -17533,22 +17525,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.456Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-flux-2-max": {
     "id": "model-flux-2-max",
     "name": "Flux 2 Max",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:22.857Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — image model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:23.371Z",
         "up": true,
@@ -17780,22 +17772,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.456Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-gpt-5-image-mini": {
     "id": "model-gpt-5-image-mini",
     "name": "GPT-5 Image Mini",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:22.858Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — image model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:23.371Z",
         "up": true,
@@ -18022,6 +18014,14 @@
       },
       {
         "timestamp": "2026-07-10T10:49:08.732Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.456Z",
         "up": false,
         "ping": 0,
         "msg": "API Down — HTTP 500",
@@ -18033,16 +18033,8 @@
   "model-gpt-5-4-image": {
     "id": "model-gpt-5-4-image",
     "name": "GPT-5.4 Image 2",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:22.858Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — image model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:23.371Z",
         "up": true,
@@ -18274,22 +18266,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.456Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-imagen-4-0-ultra": {
     "id": "model-imagen-4-0-ultra",
     "name": "GPT-5.4 Image 2",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:22.858Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — image model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:23.371Z",
         "up": true,
@@ -18521,22 +18513,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.456Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-gemini-3-1-flash-image": {
     "id": "model-gemini-3-1-flash-image",
     "name": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:22.858Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — excluido del probe por política",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:23.371Z",
         "up": true,
@@ -18768,22 +18760,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.456Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-imagen-4-0": {
     "id": "model-imagen-4-0",
     "name": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:22.858Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — image model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:23.371Z",
         "up": true,
@@ -19010,6 +19002,14 @@
       },
       {
         "timestamp": "2026-07-10T10:49:08.732Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.456Z",
         "up": false,
         "ping": 0,
         "msg": "API Down — HTTP 500",
@@ -19021,16 +19021,8 @@
   "model-gemini-3-pro-image": {
     "id": "model-gemini-3-pro-image",
     "name": "Nano Banana Pro (Gemini 3 Pro Image Preview)",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:22.858Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — image model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:23.371Z",
         "up": true,
@@ -19262,22 +19254,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.456Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-recraft-v4-1": {
     "id": "model-recraft-v4-1",
     "name": "Recraft V4.1",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:22.858Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — image model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:23.371Z",
         "up": true,
@@ -19504,6 +19496,14 @@
       },
       {
         "timestamp": "2026-07-10T10:49:08.732Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.457Z",
         "up": false,
         "ping": 0,
         "msg": "API Down — HTTP 500",
@@ -19515,16 +19515,8 @@
   "model-recraft-v4-1-pro": {
     "id": "model-recraft-v4-1-pro",
     "name": "Recraft V4.1 Pro",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:22.858Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — image model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:23.371Z",
         "up": true,
@@ -19751,6 +19743,14 @@
       },
       {
         "timestamp": "2026-07-10T10:49:08.732Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.457Z",
         "up": false,
         "ping": 0,
         "msg": "API Down — HTTP 500",
@@ -19762,16 +19762,8 @@
   "model-recraft-v4-1-vector": {
     "id": "model-recraft-v4-1-vector",
     "name": "Recraft V4.1 Vector",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:22.858Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — image model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:23.371Z",
         "up": true,
@@ -20003,22 +19995,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.457Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-riverflow-v2-pro": {
     "id": "model-riverflow-v2-pro",
     "name": "Riverflow V2 Pro",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:22.858Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — image model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:23.371Z",
         "up": true,
@@ -20245,6 +20237,14 @@
       },
       {
         "timestamp": "2026-07-10T10:49:08.732Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.457Z",
         "up": false,
         "ping": 0,
         "msg": "API Down — HTTP 500",
@@ -20256,16 +20256,8 @@
   "model-seedream-4-5": {
     "id": "model-seedream-4-5",
     "name": "Seedream 4.5",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:22.858Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — image model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:23.371Z",
         "up": true,
@@ -20497,22 +20489,22 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.457Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-kimi-k2-7-code": {
     "id": "model-kimi-k2-7-code",
     "name": "Kimi K2.7 Code",
-    "uptime": 86.67,
+    "uptime": 83.33,
     "checks": [
-      {
-        "timestamp": "2026-07-05T07:22:20.015Z",
-        "up": true,
-        "ping": 0,
-        "msg": "Stable — paid model (policy: not live-probed)",
-        "verified": true,
-        "maintenance": false
-      },
       {
         "timestamp": "2026-07-05T10:08:20.193Z",
         "up": true,
@@ -20744,13 +20736,21 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.457Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-mistral-small-4": {
     "id": "model-mistral-small-4",
     "name": "Mistral Small 4",
-    "uptime": 82.61,
+    "uptime": 79.17,
     "checks": [
       {
         "timestamp": "2026-07-06T15:24:56.472Z",
@@ -20935,13 +20935,21 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.457Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-nemotron-3-ultra": {
     "id": "model-nemotron-3-ultra",
     "name": "Nemotron 3 Ultra 550B",
-    "uptime": 78.26,
+    "uptime": 75,
     "checks": [
       {
         "timestamp": "2026-07-06T15:25:17.558Z",
@@ -21126,13 +21134,21 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.457Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-gpt-oss-20b": {
     "id": "model-gpt-oss-20b",
     "name": "GPT-OSS 20B",
-    "uptime": 82.61,
+    "uptime": 79.17,
     "checks": [
       {
         "timestamp": "2026-07-06T15:25:18.756Z",
@@ -21317,13 +21333,21 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.457Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-qwen-3-5": {
     "id": "model-qwen-3-5",
     "name": "Qwen 3.5 397B A17B",
-    "uptime": 82.61,
+    "uptime": 79.17,
     "checks": [
       {
         "timestamp": "2026-07-06T15:25:20.534Z",
@@ -21508,13 +21532,21 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.457Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-qwen-3-5-flash": {
     "id": "model-qwen-3-5-flash",
     "name": "Qwen 3.5 122B A10B",
-    "uptime": 39.13,
+    "uptime": 37.5,
     "checks": [
       {
         "timestamp": "2026-07-06T15:25:51.137Z",
@@ -21699,13 +21731,21 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.457Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-mistral-large-3": {
     "id": "model-mistral-large-3",
     "name": "Mistral Large 3",
-    "uptime": 82.61,
+    "uptime": 79.17,
     "checks": [
       {
         "timestamp": "2026-07-06T15:25:52.358Z",
@@ -21885,6 +21925,14 @@
       },
       {
         "timestamp": "2026-07-10T10:49:08.732Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.457Z",
         "up": false,
         "ping": 0,
         "msg": "API Down — HTTP 500",
@@ -22081,6 +22129,14 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.457Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
@@ -22267,6 +22323,14 @@
       },
       {
         "timestamp": "2026-07-10T10:49:08.733Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.457Z",
         "up": false,
         "ping": 0,
         "msg": "API Down — HTTP 500",
@@ -22463,13 +22527,21 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.457Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-glm-5-2": {
     "id": "model-glm-5-2",
     "name": "GLM 5.2",
-    "uptime": 56.52,
+    "uptime": 54.17,
     "checks": [
       {
         "timestamp": "2026-07-06T15:26:51.485Z",
@@ -22654,13 +22726,21 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.457Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-claude-fable-5": {
     "id": "model-claude-fable-5",
     "name": "Claude Fable 5",
-    "uptime": 81.82,
+    "uptime": 78.26,
     "checks": [
       {
         "timestamp": "2026-07-06T18:09:39.537Z",
@@ -22837,13 +22917,21 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.457Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-claude-sonnet-5": {
     "id": "model-claude-sonnet-5",
     "name": "Claude Sonnet 5",
-    "uptime": 81.82,
+    "uptime": 78.26,
     "checks": [
       {
         "timestamp": "2026-07-06T18:10:57.842Z",
@@ -23020,13 +23108,21 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.457Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-zylo-1-0-spark": {
     "id": "model-zylo-1-0-spark",
     "name": "Zylo Spark 1.0",
-    "uptime": 50,
+    "uptime": 44.44,
     "checks": [
       {
         "timestamp": "2026-07-09T02:35:55.251Z",
@@ -23086,6 +23182,14 @@
       },
       {
         "timestamp": "2026-07-10T10:49:08.733Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.457Z",
         "up": false,
         "ping": 0,
         "msg": "API Down — HTTP 500",
@@ -23097,7 +23201,7 @@
   "model-zylo-1-0-orbit": {
     "id": "model-zylo-1-0-orbit",
     "name": "Zylo Orbit 1.0",
-    "uptime": 50,
+    "uptime": 44.44,
     "checks": [
       {
         "timestamp": "2026-07-09T02:35:55.251Z",
@@ -23162,13 +23266,21 @@
         "msg": "API Down — HTTP 500",
         "verified": true,
         "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.457Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
       }
     ]
   },
   "model-zylo-1-0-cosmos": {
     "id": "model-zylo-1-0-cosmos",
     "name": "Zylo Cosmos 1.0",
-    "uptime": 50,
+    "uptime": 44.44,
     "checks": [
       {
         "timestamp": "2026-07-09T02:35:55.251Z",
@@ -23228,6 +23340,14 @@
       },
       {
         "timestamp": "2026-07-10T10:49:08.733Z",
+        "up": false,
+        "ping": 0,
+        "msg": "API Down — HTTP 500",
+        "verified": true,
+        "maintenance": false
+      },
+      {
+        "timestamp": "2026-07-10T14:13:15.457Z",
         "up": false,
         "ping": 0,
         "msg": "API Down — HTTP 500",
